@@ -1,0 +1,39 @@
+$base-font-size: 13px; //for compass vertical rhythm - this is equal to bootstrap's $baseFontSize variable
+$base-line-height: 5px;
+
+$fs-h1: 34px !default;
+$fs-h2: 30px !default;
+$fs-h3: 24px !default;
+$fs-p: 18px !default;
+$fs-li: 18px !default;
+
+$c-black: #1e1e1e;
+$c-light-gray: #d4d4d4;
+$c-gray: #a09f9f;
+$c-green: #6eb43f;
+$c-warm-smoke: #faf8f6;
+$c-orange: #ff5a00;
+$c-blue: #0093d0;
+$c-dark-blue: #1e5065;
+
+$c-bright-text: $c-black;
+$c-subdued-text: $c-gray;
+$c-text: $c-black;
+
+$speed-transition: 250ms;
+
+.subdued-text {
+  color: $c-subdued-text;
+}
+
+.bright-text {
+  color: $c-bright-text;
+}
+
+.light-text {
+  font-weight: 300;
+}
+
+.medium-text {
+  font-weight: 400;
+}

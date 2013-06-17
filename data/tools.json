@@ -1,0 +1,32 @@
+[
+{
+  "type": "Performance task",
+  "ccid": "6.RP.1, 6.RP.2",
+  "content": "tool 1"
+},
+{
+  "type": "Example work",
+  "ccid": "6.RP.1",
+  "content": "tool 2"
+},
+{
+  "type": "Diagnostic quiz",
+  "ccid": "8.G.3, 8.G.4",
+  "content": "tool 3"
+},
+{
+  "type": "Mastery quiz",
+  "ccid": "8.G.5",
+  "content": "tool 4"
+},
+{
+  "type": "Practice problems",
+  "ccid": "6.RP.2",
+  "content": "tool 5"
+},
+{
+  "type": "Expert commentary",
+  "ccid": "6.RP.2",
+  "content": "tool 6"
+}
+]

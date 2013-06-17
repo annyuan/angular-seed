@@ -1,1 +1,18 @@
-<p></p>	This is the partial for view 2.<p></p>	Showing of 'interpolate' filter:	{{ 'Current version is v%VERSION%.' | interpolate }}
+<div id="styleguide">
+
+<h1>Styleguide</h1>
+
+<p id="styleguide_introduction">
+  This styleguide is a catalogue of the visual design concepts and domain concepts included in the LearnZillion "library" product. 
+  <br/>
+  <br/>
+  Visual design concepts are communicated in the product's "look". For example, the concept of "subdued text" may be communicated by a certain font weight and color. Domain concepts are communicated through the consistent application of visual design concepts. For example, the concept of a "resource type label" may be communicated by its identification with the visual design concept of "subdued text".
+</p>
+
+<tabs>
+    <pane ng-repeat="pane in panes" heading="{{pane.title}}" active="pane.active">
+      <div ng-include="pane.content"></div>
+    </pane>
+</tabs>
+  
+</div>

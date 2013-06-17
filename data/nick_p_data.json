@@ -1,0 +1,60 @@
+[
+{
+  "lesson_set": {
+    "id": 1,
+    "name": "Place value and powers of ten",
+    "lessons": [
+      {
+        "lesson": {
+          "id": 16,
+          "name": "Understand place value: multiplying by a power of 10",
+          "lesson_video_id": "1266673383001"
+        }
+      },
+      {
+        "lesson": {
+          "id": 19,
+          "name": "Understand place value: dividing by a power of 10",
+          "lesson_video_id": "1266679933001"
+        }
+      }
+    ]
+  }
+},
+{
+  "lesson_set": {
+    "id": 2,
+    "name": "Place value and word forms",
+    "lessons": [
+      {
+        "lesson": {
+          "id": 13,
+          "name": "Write numbers in expanded form",
+          "lesson_video_id": "1266664531001"
+        }
+      },
+      {
+        "lesson": {
+          "id": 14,
+          "name": "Write numbers in word form: using place values",
+          "lesson_video_id": "1266679922001"
+        }
+      },
+      {
+        "lesson": {
+          "id": 12,
+          "name": "Find place value: using pictures",
+          "lesson_video_id": "1266664528001"
+        }
+      },
+      {
+        "lesson": {
+          "id": 15,
+          "name": "Compare numbers: using place values",
+          "lesson_video_id": "1266673381001"
+        }
+      }
+    ]
+  }
+}
+]

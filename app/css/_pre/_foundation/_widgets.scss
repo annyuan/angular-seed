@@ -1,0 +1,163 @@
+.carousel {
+  position: relative;
+  margin-bottom: 20px;
+  line-height: 1;
+}
+
+.carousel-inner {
+  overflow: hidden;
+  width: 100%;
+  position: relative;
+  > .item {
+    display: none;
+    position: relative;
+    @include transition(2s ease-in-out left);
+  }
+  > .item > img,
+  > .item > a > img {
+    display: block;
+    line-height: 1;
+  }
+  > .active { left: 0 }
+  > .active,
+  > .next,
+  > .prev { display: block }
+  > .next,
+  > .prev {
+    position: absolute;
+    top: 0;
+    width: 100%;
+  }
+  > .next { left: 100% }
+  > .prev { left: -100% }
+  > .next.left,
+  > .prev.right { left: 0 }
+  > .active.left { left: -100% }
+  > .active.right { left: 100% }
+}
+
+.carousel-control {
+  position: absolute;
+  top: 40%;
+  left: 15px;
+  width: 40px;
+  height: 40px;
+  margin-top: -20px;
+  font-size: 60px;
+  font-weight: 100;
+  line-height: 30px;
+  color: #ffffff;
+  text-align: center;
+  background: #222222;
+  border: 3px solid #ffffff;
+  border-radius: 23px;
+  opacity:0.5;
+  &.right {
+    left: auto;
+    right:15px;
+  }
+  &:hover,
+  &:focus {
+    color: #ffffff;
+    text-decoration: none;
+    opacity: 0.9;
+  }
+}
+
+.carousel-indicators {
+  position: absolute;
+  top: 15px; 
+  right: 15px;
+  z-index: 5;
+  margin: 0;
+  list-style: none;
+  li {
+    display: block;
+    float: left;
+    width: 10px;
+    height: 10px;
+    margin-left: 5px;
+    text-indent: -999px;
+    background-color: #ccc;
+    background-color: rgba(255, 255, 255, 0.25);
+    border-radius: 5px;
+  }
+  .active{ background-color: #fff }
+}
+
+.carousel-caption {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: 15px;
+  background: #333333;
+  background: rgba(0, 0, 0, 0.75);
+  h4,
+  p {
+    color: #ffffff;
+    line-height: 20px;
+  }
+  h4 { margin: 0 0 5px }
+  p { margin-bottom: 0 }
+}
+
+/*
+END CAROUSEL
+ */
+
+.nav-tabs {
+  @include trailer(8);
+  text-align: center;
+  li {
+    @include transition(all $speed-transition);
+    display: inline-block;
+    padding-left: 3 * $base-line-height;
+    padding-right: 3 * $base-line-height;
+    &:hover {
+      cursor: pointer;
+    }
+    &:not(:last-of-type) {
+      margin-right: 2 * $base-line-height;
+    }
+    &.active {
+      color: white !important;
+      background-color: $c-green;
+    }
+  }
+}
+
+.zippy {
+  .title:hover { cursor: pointer }
+  .title:before { margin-right: .35em; }
+  .body { overflow: hidden }
+  &.opened {
+    .title { @include symbol('dropdown', $size: .75em); }
+  }
+  &.closed {
+    .title { @include symbol('directright', $size: .75em); }
+    .body {height: 0; }
+  }
+}
+
+// .slide-enter, .slide-leave {
+//   @include transition(all 3s);
+// }
+
+// .slide-enter.slide-enter-active {
+//   height: 451 !important;
+// }
+
+// .slide-leave.slide-leave-active {
+//   height: 0px !important;
+// } //applied to .showcase ng-switch-when="true"
+
+.fade-hide,
+.fade-show { @include transition(all 3s); }
+
+.fade-hide,
+.fade-show.fade-show-active {opacity:1; }
+
+.fade-hide.fade-hide-active,
+.fade-show {opacity:0; }
+

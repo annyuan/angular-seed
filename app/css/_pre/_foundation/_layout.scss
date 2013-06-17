@@ -1,0 +1,4 @@
+body {
+  @include padding-leader(5);
+  @include block-centered(960px);    
+}

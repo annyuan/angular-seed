@@ -1,0 +1,439 @@
+html {overflow-x: hidden;}
+
+.collection-container {
+  @include block-centered(959px);
+  border-left: solid 1px lighten($c-gray, 10%);
+  border-right: solid 1px lighten($c-gray, 10%);
+  @include padding-leader(8);
+  @include padding-trailer(20);
+  .collection-heading {
+    border-color: lighten($c-gray, 10%);
+    @include leading-border($lines: 5);
+    @include trailing-border($lines: 10);
+    padding-left: 25px;
+    padding-right: 25px;
+    #grade-chooser,
+    #subject-chooser,
+    ul {
+      display: inline-block;
+    }
+    #grade-chooser,
+    #subject-chooser,
+    li {
+      @include adjust-font-size-to(17px, 8);
+      font-weight: 300;
+      padding-left: .75em;
+      padding-right: .75em;
+      box-sizing: border-box;
+      margin-right: .1em;
+    }
+    #grade-chooser,
+    #subject-chooser {
+      @include transition(all $speed-transition);
+
+      padding-right: 1.85em;
+      position: relative;
+      border: solid 1px lighten($c-gray, 15%);
+      @include symbol("dropdown", $size: .5em);
+      &:before {
+        position: absolute;
+        right: 15px;
+      }
+      &:hover {
+        cursor: pointer;
+        border-color: $c-gray;
+
+      }
+      
+    }
+    ul {
+      margin-left: .5em;
+      li {
+        @include transition(all $speed-transition);
+        background-color: whitesmoke;
+        border: solid 1px whitesmoke;
+        &:hover {
+          cursor: pointer;
+          background-color: lighten($c-gray, 13%);
+          color: white;
+          border-color: lighten($c-gray, 13%);
+        }
+        position: relative;
+        display: inline-block;
+        color: darken($c-gray, 10%);
+        &.active {
+          background-color: lighten($c-gray, 13%);
+          border-color: lighten($c-gray, 13%);
+          color: white;
+        }
+      }
+    }
+    h1 {
+      $fs-h1: 36px;
+      @include adjust-font-size-to($fs-h1);
+      font-weight: 300;
+      @include leader($font-size: $fs-h1, $lines: 9);
+      @include trailer($font-size: $fs-h1, $lines: 0);
+      span {
+        font-weight: 600;
+      }
+    }
+  }
+  .sub-collection-title {
+    $fs-h2: 25px;
+    background-color: whitesmoke;
+    font-weight: 300;
+    @include adjust-font-size-to($fs-h2);
+    @include trailer($font-size: $fs-h2, $lines: 7);
+    @include padding-leader($font-size: $fs-h2, $lines: 4);
+    @include padding-trailer($font-size: $fs-h2, $lines: 4);
+    $fs-h2: 30px;
+    &:before {
+      content: "1";
+      background-color: $c-black;
+      color: #ddd;
+      border-radius: 50%;
+      @include square(35px);
+      display: inline-block;
+      text-align: center;
+      margin-right: .275em;
+      @include adjust-font-size-to($from-size: 25px, $to-size: 22px, $lines: 7);
+      font-weight: 400;
+    }
+  }
+  ul {list-style: none; }
+  .lesson-set {
+    @include trailer(8);
+    h3 {
+      &:before {
+        content: "Lesson set";
+        text-transform: uppercase;
+        margin-right: .45em;
+        border-right: solid 1px $c-light-gray;
+        padding-right: .45em;
+        @extend .light-text, .subdued-text;
+      }
+    }
+  }
+  h2,
+  h3 {
+    padding-left: 25px;
+  }
+  h3 {
+    text-transform: uppercase;
+    @include padding-trailer($font-size: $fs-h3, $lines: 3);
+  }
+  .conveyer-belt-container {
+    position: relative;
+  }
+  .conveyer-belt {
+    white-space: nowrap;
+    margin-left: 0;
+    @include transition(margin-left $speed-transition);
+  }
+  .conveyer-belt-control {
+    $fs-control: 24px;
+    background-color: rgba(white, .75);
+    border: solid 1px $c-gray;
+    border-radius: 50%;
+    z-index: 100;
+    width: $fs-control * 2;
+    box-sizing: border-box;
+    @include transition(all $speed-transition);
+    @include force-vertical-center-with-absolute-positioning($fs-control*2);
+    @include adjust-font-size-to($fs-control, 10.5);
+    color: darken($c-gray, 5%);
+    &.left {
+      left: -(rhythm($font-size: $fs-control, $lines: 4.75));
+      padding-left: 10px;
+    }
+    &.right {
+      right: -(rhythm($font-size: $fs-control, $lines: 4.75));
+      padding-left: 12px;
+    }
+    &:hover {
+      cursor: pointer;
+      color: $c-black;
+      background-color: white;
+      border: solid 1px darken($c-gray, 10%);
+    }
+  }
+  .segment {
+    &:hover,
+    &.selected {
+      border-color: darken($c-gray, 10%);
+      z-index: 10;
+      h4 {
+        &:before {
+          background-color: darken($c-gray, 10%)
+        }
+        height: $base-line-height * 26;
+      }
+    }
+    &:hover {
+      cursor: pointer;
+    }
+    white-space: normal;
+    @include transition(all $speed-transition);
+    display: inline-block;
+    position: relative;
+    border: solid 1px lighten($c-gray, 10%);
+    margin-left: -1px;
+    box-sizing: border-box;
+    width: 321px;
+    height: 245px;
+    overflow: hidden;
+    img {
+      width: 100%;
+      height: 75%;
+    }
+    h4 {
+      @include transition(all $speed-transition);
+      @include adjust-font-size-to(16px, 5);
+      font-weight: 300;
+      padding-left: $base-line-height * 4;
+      padding-right: $base-line-height * 4;
+      padding-top: $base-line-height * 2.25;
+      color: #444;
+      height: $base-line-height * 15;
+      box-sizing: border-box;
+      overflow: hidden;
+      position: absolute;
+      bottom: 0;
+      width: 100%;
+      background-color: white;
+      &:before {
+        content: "";
+        background-color: lighten($c-gray, 10%);
+        left: $base-line-height * 4;
+        right: $base-line-height * 4;
+        position: absolute;
+        display: block;
+        height: 1px;
+        top: 0;
+      }
+      &:after {
+        content: "watch";
+        text-transform: uppercase;
+        position: absolute;
+        top: $base-line-height * 15;
+        left: $base-line-height * 4;
+        @include adjust-font-size-to(18px);
+        color: $c-orange;
+      }
+    }
+    &:not(.visible) {
+      opacity: .3;
+    }
+    &.visible {
+      opacity: 1;
+    }
+    &.selected {
+      z-index: 10;
+      &:before {
+        content: "";
+        position: absolute;
+        display: block;
+        top: -4px;
+        right: -4px;
+        bottom: -4px;
+        left: -4px;
+        background-color: $c-green;
+        z-index: -1;
+      }
+      h4:after {
+        content: "now playing";
+      }
+    }
+  }
+  #hideshowcase,
+  #hideToolsExpander {
+    @include adjust-font-size-to(24px, 10.5);
+    width: 48px;
+    height: 48px;
+    background-color: #3c3a37;
+    border-radius: 50%;
+    text-align: center;
+    position: absolute;
+    right: -24px;
+    top: -24px;
+    color: white;
+    &:hover {
+      cursor: pointer;
+    }
+  }
+  .showcase {
+    border-top: solid 3px $c-green;
+    height: 451px;
+    position: relative;
+    z-index: 100;
+    padding: rhythm(7);
+    background-color: $c-black;
+    box-sizing: border-box;
+    border-bottom: solid 1px lighten($c-gray, 10%);
+    .tabcontent {
+      width: 73%;
+      height: 380px !important;
+      border-right: solid 1px #444343;
+      color: white;
+      text-align: center;
+      box-sizing: border-box;
+      .preview {
+        padding: rhythm(14, $font-size: 24px) rhythm(14, $font-size: 24px) rhythm(11, $font-size: 24px) rhythm(8, $font-size: 24px);
+        @include adjust-font-size-to(24px);
+        color: #898989;
+        font-weight: 300;
+      }
+      .hero-text {
+        @include adjust-font-size-to(60px, $from-size: 24px);
+        @include trailer($font-size: 60px, $lines: 10);
+        color: white;
+      }
+    }
+    .sidetabs {
+      width: 27%;
+      float: right;
+      li {
+        @include transition(all $speed-transition);
+        border-bottom: 1px solid #444343;
+        @include adjust-font-size-to(22px, 12);
+        @extend .light-text;
+        padding-left: 25px;
+        color: white;
+        &:hover {
+          cursor: pointer;
+          color: white !important;
+        }
+        &.selected {
+          position: relative;
+          @include symbol('check');
+          &:before {
+            position: absolute;
+            right: 0;
+          }
+        }
+        &:not(.selected) {
+          color: #898989;
+        }
+      }
+    }
+  }
+  .tools {
+    @extend .clearfix;
+    h3 {
+      @extend .subdued-text, .light-text;
+    }
+    li {
+      &.selected {
+        .tool-type {
+          &:before, &:after {
+            position: absolute;
+            display: block;
+            content: "";
+            z-index: 100;
+            width: 0;
+            border-style: solid;
+            bottom: -1px;
+            left: 50%;
+          }
+          &:before {
+            border-width: 0 26px 26px;
+            border-color: $c-light-gray transparent;
+            margin-left: -26px;
+
+          }
+          &:after {
+            border-width: 0 25px 25px;
+            margin-left: -25px;
+            border-color: $c-black transparent;
+          }
+        }
+      }
+      @include transition(all $speed-transition);
+      &:not(.selected):hover {
+        cursor: pointer;
+        opacity: .85;
+      }
+      &:before {
+        position: absolute;
+        right: 30px;
+        bottom: 0;
+        @include adjust-font-size-to(80px);
+        color: rgba(white, .2);
+      }
+      position: relative;
+      float: left;
+      width: 320.6px;
+      height: 130px;
+      border: solid 1px lighten($c-gray, 10%);
+      box-sizing: border-box;
+      margin-left: -1px;
+      margin-top: -1px;
+      color: white;
+      font-weight: 300;
+      border-right: none;
+      > div {
+        padding: rhythm(5) rhythm(5) rhythm(4);
+        width: 100%;
+        height: 100%;
+        box-sizing: border-box;
+      }
+      &.mastery_quiz,
+      &.diagnostic_quiz,
+      &.practice_problems {
+        > div {background-color: $c-dark-blue;}
+        @include symbol('write');
+        &:before {
+          @include adjust-font-size-to(50px);
+          bottom: 18px;
+          right: 25px;
+        }
+      }
+      &.example_work,
+      &.performance_task {
+        > div {background-color: $c-green;}
+        @include symbol('file');
+        &:before {
+          @include adjust-font-size-to(60px);
+          bottom: 20px;
+          right: 22px;
+        }
+      }
+      &.expert_commentary {
+        > div {background-color: $c-blue;}
+        @include symbol('facetime');
+      }
+    }
+    .tool-ccid {
+      @include adjust-font-size-to(16px);
+      @include trailer($font-size: 16px, $lines: 1.5);
+      font-weight: 400;
+      color: #eee;
+    }
+    .tool-type {
+      @include adjust-font-size-to(24px);
+    }
+    .toolsExpander {
+      position: relative;
+      background-color: $c-black;
+      clear: both;
+      color: white;
+      padding: rhythm(4) rhythm(10);
+      text-align: center;
+      .showcaseToolContent {
+        @include padding-leader($lines: 8, $font-size: 18px);
+        @include padding-trailer($lines: 3, $font-size: 18px);
+        @include adjust-font-size-to(18px);
+        text-transform: uppercase;
+        @extend .light-text;
+        color: #ddd;
+      }
+      .showcaseToolType {
+        @include adjust-font-size-to(40px);
+        @include padding-trailer($lines: 14, $font-size: 40px);
+        font-weight: 300;
+      }
+    }
+  }
+
+}

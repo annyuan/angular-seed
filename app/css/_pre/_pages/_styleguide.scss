@@ -1,0 +1,90 @@
+#styleguide {
+
+  @include block-centered(960px);
+  section {
+    @include trailer(40);
+  }
+  h1, 
+  h3, 
+  li,
+  p {
+    @extend .subdued-text, .light-text;
+  }
+  h1 {
+    text-align: center;
+    @include adjust-font-size-to(60px);
+    @include leader($font-size: 60px, $lines: 10);
+    @include trailer($font-size: 60px, $lines: 10);
+  }
+  #styleguide_introduction {
+    @include adjust-font-size-to(20px, 6);
+    @include leader($font-size: 20px, $lines: 15);
+    @include trailer($font-size: 20px, $lines: 10);
+  }
+  .notes {
+    @include trailer($lines: 7);
+    li:first-of-type {
+      @include leader(1.5, $font-size: $fs-li);
+    }
+  }
+  .nav-tabs {
+    @include strikethrough-divider($c-light-gray, 64%, 3.8em, $centered: true);
+    li {
+      @include adjust-font-size-to(24px, 10);
+    }
+  }
+  ul.swatches {
+    h3 {
+      @include trailer($font-size: $fs-h3, $lines: 4);
+    }
+    > ul {@include trailer(5);}
+    li[class^="c-"] {
+      margin-right: .5em;
+      width: 5em;
+      height: 5em;
+      display: inline-block;
+      &.c-black {background-color: $c-black; }
+      &.c-gray {background-color: $c-gray; }
+      &.c-light-gray {background-color: $c-light-gray; }
+      &.c-green {background-color: $c-green; }
+    }
+  }
+  ul.elements {
+    li > .label {
+      @include adjust-font-size-to(24px);
+      @include trailer($font-size: 24px, $lines: 4);
+    }
+    .style-note {
+      .label {
+        @include adjust-font-size-to(16px);
+        @include trailer($font-size: 16px);
+      }
+      @include trailer($lines: 3);
+    }
+    > li {
+      @include trailer(8);
+      ul li, 
+      ol li {
+        @include adjust-font-size-to($to-size: 18px, $from-size: 18px);
+      }
+    }
+  }
+  ul.examples {
+    @include leader(2);
+  }
+  #type.examples {
+    > li {
+      position: relative;
+      ol {
+        @extend .circled-ol;
+        @include circled-ol($padding-left: 1.75em, $top: 1px, $font-size: 16px, $line-height: 1.5);
+        li {
+          @include trailer($font-size: 18px, $lines: 2);
+        }
+      }
+    }
+  }
+  
+}
+
+

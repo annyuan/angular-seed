@@ -1,1 +1,66 @@
-<p class="view1">This is the partial for view 1.</p>
+<div class="collection-container">
+  <div class="collection-heading">
+    <div id="grade-chooser">
+      Grade 6
+    </div>
+    <div id="subject-chooser">
+      Math
+    </div>
+    <ul class="collection-selector">
+      <li>NBT</li>
+      <li class="active">NF</li>
+      <li>G</li>
+      <li>MD</li>
+      <li>OA</li>
+    </ul>
+    <h1 class="collection-title">
+      <span>NF</span> &#8212; Numbers and operations - Fractions
+    </h1>
+  </div>
+  <div class="sub-collection-container">
+    <h2 class="sub-collection-title">
+      Adding and subtracting with equivalent fractions
+    </h2>
+    <ul>
+      <li class="lesson-set" ng-controller="LessonSetCtrl" ng-repeat="lessonSet in lessonSets">
+        <h3>{{lessonSet.ccid}}</h3>
+        <conveyer-belt>
+          <segment ng-repeat="lesson in lessonSet.lessons">
+            <img ng-src="{{lesson.image}}">
+            <h4>{{lesson.title}}</h4>
+          </segment>
+        </conveyer-belt>
+        <showcase>
+          <div sidetabs>
+            <ul class="sidetabs">
+              <li tab ng-class="{'selected': isSelected}" ng-click="select($index)" ng-repeat="resource in showcaseLesson.resources">
+                {{resource.type}}
+              </li>
+            </ul>
+            <ul class="tabcontent">
+              <li ng-show="activated" tab-content ng-repeat="resource in showcaseLesson.resources">
+                <div ng-include="resource.url"></div>
+              </li>
+            </ul>
+          </div>
+        </showcase>
+      </li>
+    </ul>
+    <div class="tools" ng-controller="ToolsCtrl">
+      <h3>Tools</h3>
+      <ul tools>
+        <li ng-class="{'selected': opened === tool}" class="{{tool.type | no_spaces}}" ng-click="open(tool)" id="tool{{$index}}" tool ng-repeat="tool in tools">
+          <div>
+            <div class="tool-ccid">{{tool.ccid}}</div>
+            <div class="tool-type">{{tool.type}}</div>
+          </div>
+        </li>
+        <div id="toolsExpander" class="toolsExpander" ng-show="opened">
+          <div id="hideToolsExpander" ng-click="opened = undefined" class="ss-icon">delete</div>
+          <div class="showcaseToolContent">{{showcaseTool.content}}</div>
+          <div class="showcaseToolType">Preview for {{showcaseTool.type}}</div>
+        </div>
+      </ul>
+    </div>
+  </div>
+</div>
