@@ -127,6 +127,12 @@ END CAROUSEL
   }
 }
 
+.switcher {
+  li.active {
+    background-color: red;
+  }
+}
+
 .zippy {
   .title:hover { cursor: pointer }
   .title:before { margin-right: .35em; }
@@ -140,20 +146,8 @@ END CAROUSEL
   }
 }
 
-// .slide-enter, .slide-leave {
-//   @include transition(all 3s);
-// }
-
-// .slide-enter.slide-enter-active {
-//   height: 451 !important;
-// }
-
-// .slide-leave.slide-leave-active {
-//   height: 0px !important;
-// } //applied to .showcase ng-switch-when="true"
-
 .fade-hide,
-.fade-show { @include transition(all 3s); }
+.fade-show { @include transition(all $speed-transition); }
 
 .fade-hide,
 .fade-show.fade-show-active {opacity:1; }

@@ -9,10 +9,25 @@
   Visual design concepts are communicated in the product's "look". For example, the concept of "subdued text" may be communicated by a certain font weight and color. Domain concepts are communicated through the consistent application of visual design concepts. For example, the concept of a "resource type label" may be communicated by its identification with the visual design concept of "subdued text".
 </p>
 
-<tabs>
-    <pane ng-repeat="pane in panes" heading="{{pane.title}}" active="pane.active">
-      <div ng-include="pane.content"></div>
-    </pane>
-</tabs>
+<ul class="switcher">
+  <li ng-class="{active:filter=='presentational'}" ng-click="search('presentational')">Presentational</li>
+  <li ng-class="{active:filter=='semantic'}" ng-click="search('semantic')">Semantic</li>
+</ul>
+
+<div ng-show="isVisible('presentational')">
+  <tabs>
+      <pane ng-repeat="pane in presentation" heading="{{pane.title}}" active="pane.active">
+        <div ng-include="pane.content"></div>
+      </pane>
+  </tabs>
+</div>
+
+<div ng-show="isVisible('semantic')">
+  <tabs>
+      <pane ng-repeat="pane in semantic" heading="{{pane.title}}" active="pane.active">
+        <div ng-include="pane.content"></div>
+      </pane>
+  </tabs>
+</div>
   
 </div>

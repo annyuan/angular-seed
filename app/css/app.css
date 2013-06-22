@@ -779,6 +779,9 @@ END CAROUSEL
       color: white !important;
       background-color: #6eb43f; }
 
+.switcher li.active {
+  background-color: red; }
+
 .zippy .title:hover {
   cursor: pointer; }
 .zippy .title:before {
@@ -796,11 +799,11 @@ END CAROUSEL
 
 .fade-hide,
 .fade-show {
-  -webkit-transition: all 3s;
-  -moz-transition: all 3s;
-  -ms-transition: all 3s;
-  -o-transition: all 3s;
-  transition: all 3s; }
+  -webkit-transition: all 250ms;
+  -moz-transition: all 250ms;
+  -ms-transition: all 250ms;
+  -o-transition: all 250ms;
+  transition: all 250ms; }
 
 .fade-hide,
 .fade-show.fade-show-active {

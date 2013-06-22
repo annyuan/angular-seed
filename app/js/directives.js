@@ -40,7 +40,7 @@
       restrict: 'E',
       replace: true,
       transclude: true,
-      template: '<div ng-switch="isShowcaseVisible" ng-animate="\'slide\'" class="showcase-container">' +
+      template: '<div ng-switch="isShowcaseVisible" class="showcase-container">' +
                   '<div class="showcase" ng-switch-when="true" ng-transclude>' +
                     '<div ng-click="hide()" id="hideshowcase" class="ss-icon">delete</div>' +
                 '</div>',
@@ -48,6 +48,7 @@
         scope.hide = function() {
           scope.isShowcaseVisible = false;
         }
+        console.log(scope)
       }
     }
   })
@@ -71,6 +72,7 @@
         $scope.$watch('showcaseLesson', function() {
           sidetabs = [];
           sidetabsContent = [];
+          console.log("sidetabs" + $scope.showcaseLesson)
         })
         $scope.select = function(index) {
           angular.forEach(sidetabs, function(tab) {
@@ -286,7 +288,7 @@
           }
           else {
             $timeout(brightcove.createExperiences);
-            console.log("brightcove")
+            console.log(scope.showcaseLesson.videoID)
             $timeout(BCL.onTemplateLoaded, 2000);
           }
         })

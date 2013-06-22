@@ -39,7 +39,16 @@
   this.ToolsCtrl.$inject = ['$scope'];
 
   this.MyCtrl2 = function($scope) {
-    $scope.panes = [
+    $scope.filter = 'semantic';
+    $scope.isVisible = function(value) {
+      if(value==$scope.filter) {
+        return true;
+      }
+    }
+    $scope.search = function(filter) {
+      $scope.filter = filter;
+    }
+    $scope.presentation = [
       {
         "title": "Colors",
         "content": "partials/styleguide/colors.html"
@@ -47,7 +56,9 @@
       {
         "title": "Type",
         "content": "partials/styleguide/type.html"
-      },
+      }
+    ]
+    $scope.semantic = [
       {
         "title": "Concepts",
         "content": "partials/styleguide/concepts.html"
