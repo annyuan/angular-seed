@@ -1,0 +1,24 @@
+<div id="styleguide">
+
+<ul class="switcher">
+  <li ng-class="{active:filter=='general'}" ng-click="search('general')">General</li>
+  <li ng-class="{active:filter=='lz_specific'}" ng-click="search('lz_specific')">LZ specific</li>
+</ul>
+
+<div ng-show="isVisible('general')">
+  <tabs>
+      <pane ng-repeat="pane in general" heading="{{pane.title}}" active="pane.active">
+        <div ng-include="pane.content"></div>
+      </pane>
+  </tabs>
+</div>
+
+<div ng-show="isVisible('lz_specific')">
+  <tabs>
+      <pane ng-repeat="pane in lz_specific" heading="{{pane.title}}" active="pane.active">
+        <div ng-include="pane.content"></div>
+      </pane>
+  </tabs>
+</div>
+  
+</div>

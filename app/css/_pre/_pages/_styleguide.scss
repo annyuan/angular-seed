@@ -1,34 +1,109 @@
 #styleguide {
 
-  @include block-centered(960px);
-  section {
-    @include trailer(40);
+  section > h1 {
+    $fs-h1: 50px;
+    @include adjust-font-size-to($fs-h1);
+    @include trailer($font-size: $fs-h1, $lines: 8);
+    @extend .medium-text, .callout-text;
   }
-  h1, 
-  h3, 
-  li,
-  p {
-    @extend .subdued-text, .light-text;
+  .code {
+    code {
+      @include adjust-font-size-to(18px);
+    }
+    pre {
+      margin-top: -(emCalc(20px))
+    }
   }
-  h1 {
-    text-align: center;
-    @include adjust-font-size-to(60px);
-    @include leader($font-size: 60px, $lines: 10);
-    @include trailer($font-size: 60px, $lines: 10);
+  h2.label {
+    $fs-h2: 35px;
+    @include adjust-font-size-to($fs-h2);
+    @include trailer($font-size: $fs-h2, $lines: 4);
+    @extend .medium-text, .callout-text;
   }
-  #styleguide_introduction {
-    @include adjust-font-size-to(20px, 6);
-    @include leader($font-size: 20px, $lines: 15);
-    @include trailer($font-size: 20px, $lines: 10);
+  section > h1,
+  h3.label,
+  .notes p {
+    @extend .light-text;
   }
-  .notes {
-    @include trailer($lines: 7);
-    li:first-of-type {
-      @include leader(1.5, $font-size: $fs-li);
+  .demo,
+  .code {
+    @include leader(6);
+    border-top-color: $c-divider;
+    @include leading-border($lines: 6);
+    position: relative;
+    &:after {
+      text-transform: uppercase;
+      position: absolute;
+      right: 0;
+      top: 0;
+      background-color: $c-light-gray;
+      @include adjust-font-size-to(13px, 5);
+      padding-left: rhythm($font-size: 13px, $lines: 1.5);
+      padding-right: rhythm($font-size: 13px, $lines: 1.5);
+      color: white;
+    }
+  }
+  .demo { @include trailer(5); }
+  .demo:after { content: "demo" }
+  .code:after { content: "code" }
+  .switcher {
+    border: none;
+    float: right;
+    @include switcher-size(15px, 6, 2);
+    @include switcher-color($c-light-gray, $c-gray, white);
+    li:not(:first-of-type) {
+      @include fix-inline-block(-3px);
+    }
+  }
+  .tabbable {
+    @include padding-leader(10);
+  }
+  .tabs, 
+  .tab-content {
+    display: inline-block;
+    vertical-align: top;
+    box-sizing: border-box;
+  }
+  .tabs {
+    padding-right: 4em;
+    @extend .side-tabs;
+    @include side-tabs-size(30%, 19px, 9, .85em, $with-background: true, $padding-lines: 3);
+    @include side-tabs-color($c: $c-gray, $c-active: white, $bgc: $c-green);
+  }
+  .tab-content {
+    width: 69%;
+    @include padding-trailer(10);
+    position: relative;
+    min-height: 10000px;
+    .tab-pane {
+      position: absolute;
+      top: 0; left: 0; right: 0;
+    }
+  }
+  #styleguide_notes {
+    @include leader(10);
+    @include trailer(10);
+    ul {
+      @extend .bulleted;
+    }
+    li {
+      @include adjust-font-size-to($fs-p);
+    }
+    li,
+    p {
+      @extend .light-text;
+    }
+    h2.label {
+      @include leader($font-size: $fs-h2, $lines: 8);
+    }
+    h3.label {
+      @include leader($font-size: $fs-h3, $lines: 5);
+    }
+    p {
+      @include trailer($font-size: $fs-p, $lines: 2);
     }
   }
   .nav-tabs {
-    @include strikethrough-divider($c-light-gray, 64%, 3.8em, $centered: true);
     li {
       @include adjust-font-size-to(24px, 10);
     }
@@ -37,50 +112,44 @@
     h3 {
       @include trailer($font-size: $fs-h3, $lines: 4);
     }
-    > ul {@include trailer(5);}
+    > ul {@include trailer(8);}
     li[class^="c-"] {
       margin-right: .5em;
-      width: 5em;
-      height: 5em;
+      width: 9em;
+      height: 9em;
       display: inline-block;
-      &.c-black {background-color: $c-black; }
-      &.c-gray {background-color: $c-gray; }
-      &.c-light-gray {background-color: $c-light-gray; }
-      &.c-green {background-color: $c-green; }
-    }
-  }
-  ul.elements {
-    li > .label {
-      @include adjust-font-size-to(24px);
-      @include trailer($font-size: 24px, $lines: 4);
-    }
-    .style-note {
-      .label {
-        @include adjust-font-size-to(16px);
-        @include trailer($font-size: 16px);
-      }
-      @include trailer($lines: 3);
-    }
-    > li {
-      @include trailer(8);
-      ul li, 
-      ol li {
-        @include adjust-font-size-to($to-size: 18px, $from-size: 18px);
-      }
-    }
-  }
-  ul.examples {
-    @include leader(2);
-  }
-  #type.examples {
-    > li {
       position: relative;
-      ol {
-        @extend .circled-ol;
-        @include circled-ol($padding-left: 1.75em, $top: 1px, $font-size: 16px, $line-height: 1.5);
-        li {
-          @include trailer($font-size: 18px, $lines: 2);
-        }
+      &:before {
+        position: absolute;
+        left: .5em;
+        top: .4em;
+        font-family: 'Consolas';
+        @include adjust-font-size-to(12px, 3.5);
+        background-color: $c-smoke;
+        border: $c-divider;
+        padding-top: .25em;
+        padding-left: rhythm($font-size: 12px, $lines: 1);
+        padding-right: rhythm($font-size: 12px, $lines: 1);
+      }
+      &.c-black {
+        background-color: $c-black; 
+        &:before { content: "$c-black" }
+      }
+      &.c-gray {
+        background-color: $c-gray; 
+        &:before { content: "$c-gray" }
+      }
+      &.c-light-gray {
+        background-color: $c-light-gray; 
+        &:before { content: "$c-light-gray" }
+      }
+      &.c-green {
+        background-color: $c-green; 
+        &:before { content: "$c-green" }
+      }
+      &.c-orange {
+        background-color: $c-orange;
+        &:before { content: "$c-orange" }
       }
     }
   }

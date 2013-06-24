@@ -10,10 +10,9 @@
 
 body {
   padding-top: 0;
-  margin: 0 !important;
-  width: auto !important;
+  @include block-centered(960px);
   position: relative;
-  overflow-x: hidden;
+  overflow: hidden;
 }
 
 

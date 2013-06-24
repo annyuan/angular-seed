@@ -1,3 +1,35 @@
 @import '_typography/_typography';
 //these are the contents of compass vertical rhythm library of mixins
 //excluding debug vertical alignment mixin, and legacy support for ie6 handling in the establish-baseline mixin
+
+@mixin experimental($property, $value,
+  $moz      : $experimental-support-for-mozilla,
+  $webkit   : $experimental-support-for-webkit,
+  $o        : $experimental-support-for-opera,
+  $ms       : $experimental-support-for-microsoft,
+  $khtml    : $experimental-support-for-khtml,
+  $official : true
+) {
+  @if $webkit  and $experimental-support-for-webkit    { -webkit-#{$property} : $value; }
+  @if $khtml   and $experimental-support-for-khtml     {  -khtml-#{$property} : $value; }
+  @if $moz     and $experimental-support-for-mozilla   {    -moz-#{$property} : $value; }
+  @if $ms      and $experimental-support-for-microsoft {     -ms-#{$property} : $value; }
+  @if $o       and $experimental-support-for-opera     {      -o-#{$property} : $value; }
+  @if $official                                        {         #{$property} : $value; }
+}
+
+@mixin box-sizing($bs) {
+  $bs: unquote($bs);
+  @include experimental(box-sizing, $bs,
+    -moz, -webkit, not -o, not -ms, not -khtml, official
+  );
+}
+
+@mixin pie-clearfix {
+  &:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+  @include has-layout;
+}

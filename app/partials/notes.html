@@ -1,0 +1,20 @@
+<div id="styleguide">
+  <div id="styleguide_notes">
+    <h2 class="label">Goals</h2>
+    <ul>
+      <li>To avoid including presentational classes in HTML.</li>
+    </ul>
+    <h2 class="label">Folder structure</h2>
+    <p>
+      There are three folders in <code>stylesheets</code>: <code>library</code>, <code>foundation</code>, and <code>application</code>.
+    </p>
+    <h3 class="label">library/</h3>
+    <p>Library contains only variables, mixins, functions, and placeholder selectors. This way any stylesheet can import library and make use of these helpers without duplicating CSS output. Library contains all style primitive definitions. For example, if the app uses a particular shade of green, the hexadecimal code for that shade would be defined in library like so: <code>$c-green: #849243</code>.</p> 
+    <p>Library also contains all design concept definitions, where design concepts are defined in terms of style primitives. For example, if the app makes use of dividers between blocks of content, the color of those dividers would be defined in library in terms of a style primitive like so: <code>$c-divider: $c-gray</code>.</p>
+    <h3 class="label">foundation/</h3>
+    <p>Foundation contains style definitions of domain concepts, which are expressed in HTML through classes and ID's. Domain concepts are defined in terms of design concepts. For example, if the app has a concept of "student-input-box", the style for that concept would be defined in foundation like so: <code>.student-input-box { @extend %subdued-text, %shadow-box }</code>.</p> 
+    <p>Foundation also contains style definitions of semantic entities, which are expressed in HTML through tag names. Semantic entities are also defined in terms of design concepts. For example, the style for the H1 tag would be defined in foundation like so: <code>h1 { @include adjust-font-size-to($fs-jumbo) }</code>.</p>
+    <h3 class="label">application/</h3>
+    <p>Application contains experimental and one-off styles.</p>
+  </div>
+</div>

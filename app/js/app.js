@@ -7,12 +7,12 @@
       $routeProvider.when('/view1', {
         templateUrl: 'partials/partial1.html',
         controller: CollectionCtrl
-      }).when('/view2', {
-        templateUrl: 'partials/partial2.html',
-        controller: MyCtrl2
-      }).when('/view3', {
-        templateUrl: 'partials/partial3.html',
-        controller: MyCtrl3
+      }).when('/styleguide', {
+        templateUrl: 'partials/styleguide.html',
+        controller: StyleguideCtrl
+      }).when('/notes', {
+        templateUrl: 'partials/notes.html',
+        controller: NotesCtrl
       }).otherwise({
         redirectTo: '/view1'
       });

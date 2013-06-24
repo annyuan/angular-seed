@@ -6,8 +6,15 @@
   <link rel="stylesheet" href="css/app.css" />
   <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400,300,600' rel='stylesheet' type='text/css'>
 </head>
-<body>
+<body ng-controller="MainCtrl">
+  
+  <nav>
+    <img src="http://s3.amazonaws.com/beta.learnzillion.com/logo-png.png" alt="">
+    <a ng-class="getClass('/notes')" href="#/notes">notes</a>
+    <a ng-class="getClass('/styleguide')" href="#/styleguide">styleguide</a>
+  </nav>
   <div ng-view=""></div>
+
   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.1.5/angular.js"></script>
   <script src="lib/ui-bootstrap/ui-bootstrap.js"></script>
   <script src="lib/ui-bootstrap/ui-bootstrap-carousel.js"></script>

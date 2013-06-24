@@ -56,7 +56,7 @@ angular.module("template/tabs/pane.html", []).run(["$templateCache", function($t
 angular.module("template/tabs/tabs.html", []).run(["$templateCache", function($templateCache){
   $templateCache.put("template/tabs/tabs.html",
     "<div class=\"tabbable\" panes=\"panes\">" +
-    "  <ul class=\"nav nav-tabs\">" +
+    "  <ul class=\"tabs\">" +
     "    <li ng-repeat=\"pane in panes\" ng-class=\"{active:pane.selected}\">" +
     "      <a ng-click=\"select(pane)\">{{pane.heading}}</a>" +
     "    </li>" +

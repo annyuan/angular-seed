@@ -1,3 +1,7 @@
+@function emCalc($px-value, $font-size: $base-font-size) {
+  @return $px-value / $font-size * 1em;
+}
+
 @mixin transition($transition) {
   -webkit-transition: $transition;
      -moz-transition: $transition;
@@ -112,10 +116,42 @@
   margin-top: -.5*($height);
 }
 
+@mixin link-style($color: $c-link-default, $color-hover: $c-link-hover) {
+  @include transition(color $speed-transition);
+  color: $color;
+  &:hover {
+    cursor: pointer;
+    color: $color-hover;
+  }
+}
 
+@mixin horizontal-list-buffer($justification, $buffer, $element: li, $rtl: false) {
+  @if $justification == 'left' {
+    #{$element} {
+      &:not(:last-of-type) {
+        margin-right: $buffer;
+      }
+    }
+  }
+  @if $justification == 'right' {
+    @if $rtl {
+      #{$element} {
+        &:not(:last-of-type) {
+          margin-left: $buffer;
+        }
+      }
+    }
+    @else {
+      #{$element} {
+        &:not(:first-of-type) {
+          margin-left: $buffer;
+        }
+      }
+    }
+  }
+}
 
-
-
-
-
+@mixin fix-inline-block($negative-margin) {
+  margin-left: $negative-margin;
+}
 

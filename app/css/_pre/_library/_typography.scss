@@ -1,0 +1,37 @@
+.standard-link {
+  text-decoration: none;
+  @include link-style;
+}
+
+.bulleted {
+  li {
+    @extend .ss-record;
+    &:before {
+      margin-right: .5em;
+    }
+  }
+}
+
+.subdued-text {
+  color: $c-subdued-text;
+}
+
+.bright-text {
+  color: $c-bright-text;
+}
+
+.callout-text {
+  color: $c-callout-text;
+}
+
+.light-text {
+  font-weight: 300;
+}
+
+.medium-text {
+  font-weight: 400;
+}
+
+.heavy-text {
+  font-weight: 600;
+}

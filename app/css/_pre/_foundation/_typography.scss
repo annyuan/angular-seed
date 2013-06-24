@@ -8,43 +8,33 @@ html {
 
 h1 {
   @include adjust-font-size-to($fs-h1);
-  @include trailer($font-size: $fs-h1, $lines: 6);
+  @include trailer($font-size: $fs-h1, $lines: 2);
 }
 
 h2 {
   @include adjust-font-size-to($fs-h2);
-  @include trailer($font-size: $fs-h2, $lines: 3);
+  @include trailer($font-size: $fs-h2, $lines: 2);
 }
 
 h3 {
   @include adjust-font-size-to($fs-h3);
-  @include trailer($font-size: $fs-h3);
+  @include trailer($font-size: $fs-h3, $lines: 2);
+}
+
+h4 {
+  @include adjust-font-size-to($fs-h4);
+  @include trailer($font-size: $fs-h4, $lines: 2);
+}
+
+h5 {
+  @include adjust-font-size-to($fs-h5);
+  @include trailer($font-size: $fs-h5, $lines: 2);
 }
 
 p {
   @include adjust-font-size-to($fs-p);
-  @include trailer($font-size: $fs-p);
 }
 
-li {
-  // @include adjust-font-size-to($fs-li, $from-size: $base-font-size);
-  // @include trailer($font-size: $fs-li);
-}
-
-.bulleted {
-  li {
-    @extend .ss-record;
-    &:before {
-      margin-right: .5em;
-    }
-  }
-}
-
-.ccid {
-  span {
-    @extend .subdued-text, .light-text;
-    margin-right: .1em;
-  }
-  @extend .medium-text;
-  color: darken($c-subdued-text, 15%);
+code {
+  font-family: Consolas;
 }

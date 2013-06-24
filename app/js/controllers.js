@@ -38,8 +38,8 @@
 
   this.ToolsCtrl.$inject = ['$scope'];
 
-  this.MyCtrl2 = function($scope) {
-    $scope.filter = 'semantic';
+  this.StyleguideCtrl = function($scope) {
+    $scope.filter = 'general';
     $scope.isVisible = function(value) {
       if(value==$scope.filter) {
         return true;
@@ -48,24 +48,52 @@
     $scope.search = function(filter) {
       $scope.filter = filter;
     }
-    $scope.presentation = [
+    $scope.general = [
       {
         "title": "Colors",
         "content": "partials/styleguide/colors.html"
       },
       {
+        "title": "Grid",
+        "content": "partials/styleguide/grid.html"
+      },
+      {
         "title": "Type",
         "content": "partials/styleguide/type.html"
-      }
-    ]
-    $scope.semantic = [
+      },
       {
-        "title": "Concepts",
-        "content": "partials/styleguide/concepts.html"
+        "title": "Icons",
+        "content": "partials/styleguide/icons.html"
+      },
+      {
+        "title": "Buttons",
+        "content": "partials/styleguide/buttons.html"
+      },
+      {
+        "title": "Containers",
+        "content": "partials/styleguide/containers.html"
+      },
+      {
+        "title": "Forms",
+        "content": "partials/styleguide/forms.html"
+      },
+      {
+        "title": "Navigation",
+        "content": "partials/styleguide/navigation.html"
       },
       {
         "title": "Widgets",
         "content": "partials/styleguide/widgets.html"
+      },
+      {
+        "title": "Miscellaneous",
+        "content": "partials/styleguide/miscellaneous.html"
+      }
+    ]
+    $scope.lz_specific = [
+      {
+        "title": "Concepts",
+        "content": "partials/styleguide/concepts.html"
       },
       {
         "title": "Modules",
@@ -74,12 +102,24 @@
     ]
   };
 
-  this.MyCtrl2.$inject = ['$scope'];
+  this.StyleguideCtrl.$inject = ['$scope'];
 
-  this.MyCtrl3 = function($scope) {
+  this.NotesCtrl = function($scope) {
 
   };
 
-  this.MyCtrl3.$inject = ['$scope'];
+  this.NotesCtrl.$inject = ['$scope'];
+
+  this.MainCtrl = function($scope, $location) {
+    $scope.getClass = function(path) {
+        if ($location.path().substr(0, path.length) == path) {
+          return "active"
+        } else {
+          return ""
+        }
+    }
+  };
+
+  this.MainCtrl.$inject = ['$scope', '$location'];
 
 }).call(this);

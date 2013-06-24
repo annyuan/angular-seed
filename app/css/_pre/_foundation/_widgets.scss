@@ -1,136 +1,108 @@
-.carousel {
-  position: relative;
-  margin-bottom: 20px;
-  line-height: 1;
-}
-
-.carousel-inner {
-  overflow: hidden;
-  width: 100%;
-  position: relative;
-  > .item {
-    display: none;
-    position: relative;
-    @include transition(2s ease-in-out left);
-  }
-  > .item > img,
-  > .item > a > img {
-    display: block;
-    line-height: 1;
-  }
-  > .active { left: 0 }
-  > .active,
-  > .next,
-  > .prev { display: block }
-  > .next,
-  > .prev {
-    position: absolute;
-    top: 0;
-    width: 100%;
-  }
-  > .next { left: 100% }
-  > .prev { left: -100% }
-  > .next.left,
-  > .prev.right { left: 0 }
-  > .active.left { left: -100% }
-  > .active.right { left: 100% }
-}
-
-.carousel-control {
-  position: absolute;
-  top: 40%;
-  left: 15px;
-  width: 40px;
-  height: 40px;
-  margin-top: -20px;
-  font-size: 60px;
-  font-weight: 100;
-  line-height: 30px;
-  color: #ffffff;
-  text-align: center;
-  background: #222222;
-  border: 3px solid #ffffff;
-  border-radius: 23px;
-  opacity:0.5;
-  &.right {
-    left: auto;
-    right:15px;
-  }
-  &:hover,
-  &:focus {
-    color: #ffffff;
-    text-decoration: none;
-    opacity: 0.9;
-  }
-}
-
-.carousel-indicators {
-  position: absolute;
-  top: 15px; 
-  right: 15px;
-  z-index: 5;
-  margin: 0;
-  list-style: none;
-  li {
-    display: block;
-    float: left;
-    width: 10px;
-    height: 10px;
-    margin-left: 5px;
-    text-indent: -999px;
-    background-color: #ccc;
-    background-color: rgba(255, 255, 255, 0.25);
-    border-radius: 5px;
-  }
-  .active{ background-color: #fff }
-}
-
-.carousel-caption {
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  padding: 15px;
-  background: #333333;
-  background: rgba(0, 0, 0, 0.75);
-  h4,
-  p {
-    color: #ffffff;
-    line-height: 20px;
-  }
-  h4 { margin: 0 0 5px }
-  p { margin-bottom: 0 }
-}
-
-/*
-END CAROUSEL
- */
-
-.nav-tabs {
-  @include trailer(8);
-  text-align: center;
-  li {
-    @include transition(all $speed-transition);
-    display: inline-block;
-    padding-left: 3 * $base-line-height;
-    padding-right: 3 * $base-line-height;
-    &:hover {
-      cursor: pointer;
-    }
-    &:not(:last-of-type) {
-      margin-right: 2 * $base-line-height;
-    }
+nav {
+  border-bottom-color: $c-divider;
+  @include trailing-border($lines: 2);
+  @include leader(2.5);
+  @include trailer(2);
+  @include horizontal-list-buffer($justification: 'right', $buffer: 1em, $element: a, $rtl: true);
+  a {
+    float: right;
+    text-transform: capitalize;
+    @include adjust-font-size-to(18px, 8);
+    @extend .standard-link;
     &.active {
-      color: white !important;
-      background-color: $c-green;
+      color: $c-link-active;
     }
   }
 }
 
 .switcher {
-  li.active {
-    background-color: red;
+  display: inline-block;
+  border-style: solid;
+  border-width: 1px;
+  li {
+    @extend .light-text;
+    display: inline-block;
+    &:hover {
+      cursor: pointer;
+    }
   }
+}
+
+@mixin switcher-size($font-size, $lines, $padding-lines) {
+  li {
+    @include adjust-font-size-to($font-size, $lines);
+    padding-left: emCalc($padding-lines * $base-line-height);
+    padding-right: emCalc($padding-lines * $base-line-height);
+  }
+}
+
+@mixin switcher-color($bdc, $c, $c-active) {
+  border-color: $bdc;
+  li {
+    color: $c;
+    &.active {
+      color: $c-active;
+      background-color: $bdc;
+    }
+  }
+}
+
+.tabs {
+  display: inline-block;
+  li {
+    @include transition(all $speed-transition);
+    &:hover {
+      cursor: pointer;
+    }
+  }
+}
+
+.side-tabs {
+  li { @extend .light-text }
+  li.active { @include symbol('check'); }
+}
+
+@mixin side-tabs-size($width, $font-size, $lines, $symbol-size, $with-background: false, $padding-lines: '') {
+  $height: $lines * $base-line-height;
+  width: $width;
+  li {
+    @include adjust-font-size-to($font-size, $lines);
+    position: relative;
+    &:before {
+      font-size: $symbol-size;
+      @include force-vertical-center-with-absolute-positioning($height);
+    }
+    @if $with-background {
+      padding-left: emCalc($padding-lines * $base-line-height, $font-size);
+      padding-right: emCalc($padding-lines * $base-line-height, $font-size);
+      &:before {
+        right: emCalc($padding-lines * $base-line-height, $font-size);
+      }
+    }
+    @else {
+      &:before {
+        right: 0;
+      }
+    }
+  }
+}
+
+@mixin side-tabs-color($c, $c-active, $bgc) {
+  li {
+    color: $c;
+    &.active,
+    &:hover {
+      color: $c-active;
+      background-color: $bgc;
+    }
+    &:before {
+      color: $c-active;
+    }
+  }
+}
+
+.horizontal-tabs {
+
 }
 
 .zippy {
