@@ -1,15 +1,76 @@
+@mixin link-style($color: $c-link-default, $color-hover: $c-link-hover) {
+  @include transition(color $speed-transition);
+  color: $color;
+  &:hover {
+    cursor: pointer;
+    color: $color-hover;
+  }
+}
+
 .standard-link {
-  text-decoration: none;
   @include link-style;
+}
+
+.circled-ol {
+  list-style: none;
+  counter-reset: numList;
+  li {
+    position: relative;
+    &:before {
+      position: absolute;
+      counter-increment: numList;
+      content: counter(numList);
+      text-align: center;
+      border-radius: 50%;
+    }
+  }
+}
+
+@mixin circled-ol($padding-left: "", $left: 0, $top: 0, $font-size: inherit, $line-height: 2, $color: white, $background-color: $c-light-gray) {
+  $size: $line-height + 'em';
+  @if $padding-left == "" {
+    $padding-left: $line-height + 'em';
+  }
+  li {
+    padding-left: #{$padding-left};
+    &:before {
+      left: $left;
+      top: $top;
+      font-size: $font-size;
+      line-height: $line-height;
+      @include square(#{$size});
+      color: $color;
+      background-color: $background-color;
+    }
+  }
 }
 
 .bulleted {
   li {
-    @extend .ss-record;
+    position: relative;
+    @include symbol('record');
     &:before {
-      margin-right: .5em;
+      position: absolute;
     }
   }
+}
+
+@mixin bulleted-positioning($padding-left, $top, $left: 0) {
+  li {
+    padding-left: $padding-left;
+    &:before {
+      left: $left;
+      top: $top
+    }
+  }
+}
+
+@mixin bulleted-color($color) {
+  li:before {color: $color }
+}
+
+@mixin bulleted-size($size) {
+  li:before {font-size: $size }
 }
 
 .subdued-text {

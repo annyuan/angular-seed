@@ -1,3 +1,132 @@
 <section id="buttons">
   <h1>Buttons</h1>
+  <ul class="elements">
+    <li id="buttons">
+      <h2 class="label"><code>button</code> tags and the <code>button</code> class</h2>
+      <div class="notes">
+        <p>Since there is a <code>button</code> tag, the <code>button</code> class deserves to be in the markup. They come with minimal styles, but if they are being included within a frequently used component (such as a form), then they should hopefully have additional style settings pre-applied.</p>
+      </div>
+      <div class="demo">
+        <button>Click me</button>
+        <a href="" class="button">And me</a>
+      </div>
+      <div class="code">
+        <pre>
+          <code>
+%button Click me
+%a.button And me
+          </code>
+        </pre>
+      </div>
+    </li>
+    <li id="disabled-buttons">
+      <h2 class="label">Disabled buttons</h2>
+      <div class="demo">
+        <button class="button-disabled">Disabled</button>
+      </div>
+      <div class="code">
+        <pre>
+          <code>
+%button.button-disabled Disabled
+          </code>
+        </pre>
+      </div>
+    </li>
+  </ul>
+  <ul class="utilities">
+    <li id="button-colors">
+      <h2 class="label">@mixin button-colors(...)</h2>
+      <div class="internals">
+        <ul>
+          <div class="label">Required arguments:</div>
+          <li><code>$c</code><p>Text color</p></li>
+          <li><code>$bgc</code><p>Background color</p></li>
+          <li><code>$bgc-hover</code><p>Background color on hover</p></li>
+        </ul>
+        <ul>
+          <div class="label">Optional arguments:</div>
+          <li><code>$c-hover: $c</code><p>Text color on hover</p></li>
+        </ul>
+      </div>
+      <div class="demo">
+        <button>I'm orange</button>
+      </div>
+      <div class="code">
+        <pre>
+          <code>
+%button I'm orange
+
+button {
+  @include button-colors(white, $c-orange, lighten($c-orange, 10%))
+}
+          </code>
+        </pre>
+      </div>
+    </li>
+    <li id="button-sizes">
+      <h2 class="label">@mixin button-sizes(...)</h2>
+      <div class="internals">
+        <ul>
+          <div class="label">Required parameters</div>
+          <li><code>$font-size</code></li>
+          <li><code>$line-height</code></li>
+          <li><code>$lines-horizontal-padding</code></li>
+        </ul>
+      </div>
+      <div class="demo">
+        <button>Big button</button>
+      </div>
+      <div class="code">
+        <pre>
+          <code>
+%button Big button
+
+button {
+  @include button-sizes(20px, 12, 7)
+}
+          </code>
+        </pre>
+      </div>
+    </li>
+    <li id="button-green">
+      <h2 class="label">%button-green</h2>
+      <div class="internals">
+        <code>@include button-colors(white, $c-green, lighten($c-green, 10%))</code>
+      </div>
+      <div class="demo">
+        <button>I'm green</button>
+      </div>
+      <div class="code">
+        <pre>
+          <code>
+%button I'm green
+
+button {
+  @extend %button-green
+}
+          </code>
+        </pre>
+      </div>
+    </li>
+    <li id="button-medium">
+      <h2 class="label">%button-medium</h2>
+      <div class="internals">
+        <code>@include button-sizes(16px, 9, 5)</code>
+      </div>
+      <div class="demo">
+        <button>I'm medium-sized</button>
+      </div>
+      <div class="code">
+        <pre>
+          <code>
+%button I'm medium-sized
+
+button {
+  @extend %button-medium
+}
+          </code>
+        </pre>
+      </div>
+    </li>
+  </ul>
 </section>

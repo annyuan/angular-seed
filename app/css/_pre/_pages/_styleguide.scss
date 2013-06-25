@@ -18,13 +18,17 @@
     $fs-h2: 35px;
     @include adjust-font-size-to($fs-h2);
     @include trailer($font-size: $fs-h2, $lines: 4);
-    @extend .medium-text, .callout-text;
+    @extend .medium-text;
+  }
+  ul.elements h2.label { @extend .callout-text }
+  ul.utilities h2.label { 
+    color: $c-orange;
+    font-family: 'Consolas';
   }
   section > h1,
   h3.label,
-  .notes p {
-    @extend .light-text;
-  }
+  .notes p { @extend .light-text; }
+  .notes a { @extend .medium-text; }
   .demo,
   .code {
     @include leader(6);
@@ -34,14 +38,40 @@
     &:after {
       text-transform: uppercase;
       position: absolute;
-      right: 0;
-      top: 0;
+      right: 0; top: 0;
       background-color: $c-light-gray;
       @include adjust-font-size-to(13px, 5);
       padding-left: rhythm($font-size: 13px, $lines: 1.5);
       padding-right: rhythm($font-size: 13px, $lines: 1.5);
       color: white;
     }
+  }
+  .utilities .internals {
+    @include trailer(5);
+    @include panel-background($c-smoke);
+    @include panel-padding(3, 4);
+    > p {
+      @include trailer($font-size: $fs-p, $lines: 3);
+    }
+    .label {
+      @include adjust-font-size-to($fs-p);
+      @include trailer($font-size: $fs-p, $lines: 2.5);
+    }
+    code {
+      @include adjust-font-size-to($fs-p);
+    }
+    p code {
+      @include adjust-font-size-to($fs-p, $from-size: $fs-p);
+    }
+    ul {
+      @extend .bulleted;
+      @include bulleted-positioning(1.5em, .3em, .1em);
+      @include bulleted-size(7px);
+      @include bulleted-color(darken($c-light-gray, 8%));
+      &:not(:first-of-type) {@include leader(4); }
+      &:not(:last-of-type) li {@include trailer(2); }
+    }
+    li {@include leader(); }
   }
   .demo { @include trailer(5); }
   .demo:after { content: "demo" }
@@ -68,7 +98,7 @@
     padding-right: 4em;
     @extend .side-tabs;
     @include side-tabs-size(30%, 19px, 9, .85em, $with-background: true, $padding-lines: 3);
-    @include side-tabs-color($c: $c-gray, $c-active: white, $bgc: $c-green);
+    @include side-tabs-color($c: $c-subdued-text, $c-active: white, $bgc: $c-green);
   }
   .tab-content {
     width: 69%;
@@ -83,30 +113,76 @@
   #styleguide_notes {
     @include leader(10);
     @include trailer(10);
+    h1 {@extend .callout-text; }
+    h3.label { @extend .medium-text; }
     ul {
       @extend .bulleted;
+      @include bulleted-positioning(emCalc(30px, $fs-p), .1em, .5em);
+      @include bulleted-size(.1em);
+      @include bulleted-color(darken($c-light-gray, 5%));
     }
     li {
       @include adjust-font-size-to($fs-p);
+      @include trailer($font-size: $fs-p, $lines: 2);
     }
     li,
-    p {
-      @extend .light-text;
-    }
+    p { @extend .light-text; }
     h2.label {
       @include leader($font-size: $fs-h2, $lines: 8);
     }
     h3.label {
       @include leader($font-size: $fs-h3, $lines: 5);
     }
-    p {
-      @include trailer($font-size: $fs-p, $lines: 2);
-    }
+  }
+  #styleguide_notes p,
+  .notes p {
+    @include trailer($font-size: $fs-p, $lines: 2);
   }
   .nav-tabs {
     li {
       @include adjust-font-size-to(24px, 10);
     }
+  }
+  .elements #symbol-set {
+    .ss-icon {
+      @include adjust-font-size-to(24px);
+      display: inline-block;
+    }
+    button.ss-icon {
+      margin-left: 1em;
+      @extend .button-green;
+      padding: .5em .5em .25em .5em;
+      border-radius: 5px;
+    }
+  }
+  .utilities #symbol-set {
+    .button {
+      @extend .button-green;
+      @extend .button-medium;
+      @include symbol('phone');
+      &:before {
+        margin-right: .5em;
+      }
+    }
+  }
+  .elements #buttons button,
+  .elements #buttons .button,
+  .utilities #button-green button,
+  .utilities #button-medium button {
+    @extend .button-green;
+    @extend .button-medium;
+    margin-right: .5em;
+  }
+  .elements #disabled-buttons button {
+    @extend .button-medium;
+  }
+  .utilities #button-colors button {
+    @extend .button-medium;
+    @include button-colors(white, $c-orange, lighten($c-orange, 10%));
+  }
+  .utilities #button-sizes button {
+    @extend .button-green;
+    @include button-sizes(20px, 12, 7);
   }
   ul.swatches {
     h3 {
@@ -115,14 +191,12 @@
     > ul {@include trailer(8);}
     li[class^="c-"] {
       margin-right: .5em;
-      width: 9em;
-      height: 9em;
+      width: 9em; height: 9em;
       display: inline-block;
       position: relative;
       &:before {
         position: absolute;
-        left: .5em;
-        top: .4em;
+        left: .5em; top: .4em;
         font-family: 'Consolas';
         @include adjust-font-size-to(12px, 3.5);
         background-color: $c-smoke;

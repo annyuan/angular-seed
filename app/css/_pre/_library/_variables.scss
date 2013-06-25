@@ -21,7 +21,7 @@ $c-dark-blue: #1e5065;
 
 $c-bright-text: $c-black;
 $c-subdued-text: $c-gray;
-$c-text: $c-gray;
+$c-text: darken($c-gray, 10%);
 $c-callout-text: $c-green;
 
 $c-link-default: $c-gray;

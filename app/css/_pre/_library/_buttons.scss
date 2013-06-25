@@ -1,0 +1,44 @@
+/**
+ * UTILITIES
+ */
+
+.button {
+  @include transition(all $speed-transition);
+  display: inline-block;
+  border-radius: 40px;
+  border: none; //reset
+  padding-top: 0; //reset
+  padding-bottom: 0; //reset
+  margin: 0; //reset
+  @extend .medium-text;
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+@mixin button-colors($c, $bgc, $bgc-hover, $c-hover: $c) {
+  color: $c;
+  background-color: $bgc;
+  &:hover {
+    color: $c-hover;
+    background-color: $bgc-hover;
+  }
+}
+
+@mixin button-sizes($font-size, $line-height, $lines-horizontal-padding) {
+  @include adjust-font-size-to($font-size, $line-height);
+  padding-left: rhythm($font-size: $font-size, $lines: $lines-horizontal-padding);
+  padding-right: rhythm($font-size: $font-size, $lines: $lines-horizontal-padding);
+}
+
+/**
+ * STANDARD SETTINGS
+ */
+
+.button-green {
+  @include button-colors(white, $c-green, lighten($c-green, 10%))
+}
+
+.button-medium {
+  @include button-sizes(16px, 9, 5);
+}

@@ -35,6 +35,10 @@ p {
   @include adjust-font-size-to($fs-p);
 }
 
+a {
+  text-decoration: none;
+}
+
 code {
   font-family: Consolas;
 }

@@ -24,16 +24,6 @@
 
 .clearfix { @include clearfix(); }
 
-@mixin symbol($symbol, $placement: 'before', $color: 'inherit', $size: 'inherit') {
-  $ss-class: '.ss-' + $symbol;
-  &:#{$placement} {
-    @extend .ss-icon;
-    color: $color;
-    font-size: $size;
-  }
-  @extend #{$ss-class};
-}
-
 @mixin square($size) {
   height: $size;
   width: $size;
@@ -75,54 +65,11 @@
   }
 }
 
-.circled-ol {
-  list-style: none;
-  counter-reset: numList;
-  li {
-    position: relative;
-    &:before {
-      position: absolute;
-      counter-increment: numList;
-      content: counter(numList);
-      text-align: center;
-      border-radius: 50%;
-    }
-  }
-}
-
-@mixin circled-ol($padding-left: "", $left: 0, $top: 0, $font-size: inherit, $line-height: 2, $color: white, $background-color: $c-light-gray) {
-  $size: $line-height + 'em';
-  @if $padding-left == "" {
-    $padding-left: $line-height + 'em';
-  }
-  li {
-    padding-left: #{$padding-left};
-    &:before {
-      left: $left;
-      top: $top;
-      font-size: $font-size;
-      line-height: $line-height;
-      @include square(#{$size});
-      color: $color;
-      background-color: $background-color;
-    }
-  }
-}
-
 @mixin force-vertical-center-with-absolute-positioning($height) {
   position: absolute;
   top: 50%;
   height: $height;
   margin-top: -.5*($height);
-}
-
-@mixin link-style($color: $c-link-default, $color-hover: $c-link-hover) {
-  @include transition(color $speed-transition);
-  color: $color;
-  &:hover {
-    cursor: pointer;
-    color: $color-hover;
-  }
 }
 
 @mixin horizontal-list-buffer($justification, $buffer, $element: li, $rtl: false) {

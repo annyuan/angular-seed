@@ -1,0 +1,9 @@
+@mixin symbol($symbol, $placement: 'before', $color: 'inherit', $size: 'inherit') {
+  $ss-class: '.ss-' + $symbol;
+  &:#{$placement} {
+    @extend .ss-icon;
+    color: $color;
+    font-size: $size;
+  }
+  @extend #{$ss-class};
+}

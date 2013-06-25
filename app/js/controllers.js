@@ -54,20 +54,20 @@
         "content": "partials/styleguide/colors.html"
       },
       {
-        "title": "Grid",
-        "content": "partials/styleguide/grid.html"
-      },
-      {
-        "title": "Type",
-        "content": "partials/styleguide/type.html"
-      },
-      {
         "title": "Icons",
         "content": "partials/styleguide/icons.html"
       },
       {
         "title": "Buttons",
         "content": "partials/styleguide/buttons.html"
+      },
+      {
+        "title": "Grid",
+        "content": "partials/styleguide/grid.html"
+      },
+      {
+        "title": "Type",
+        "content": "partials/styleguide/type.html"
       },
       {
         "title": "Containers",

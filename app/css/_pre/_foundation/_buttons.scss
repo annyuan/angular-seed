@@ -1,0 +1,9 @@
+.button,
+button {
+  @extend .button; //looks weird b/c LR d/n accept placeholder selectors
+}
+
+.button-disabled {
+  @include button-colors(white, $c-light-gray, $c-light-gray);
+  &:hover { cursor: default }
+}

@@ -1,3 +1,64 @@
 <section id="icons">
   <h1>Icons</h1>
+  <ul class="elements">
+    <li id="symbol-set">
+      <h2 class="label">Symbol Set</h2>
+      <div class="notes">
+        <p>We're using Symbol Set's <a href="http://symbolset.com/icons/standard">SSStandard</a> and <a href="http://symbolset.com/icons/social-regular">SSSocial</a>.</p> 
+        <p>Icons are not included directly in the markup very often since they typically are just used for presentational enhancement. One exception is the icon button, where the icon is meaningful enough in appearance that no text needs to appear with it for the user to know what clicking on it will do.</p>
+      </div>
+      <div class="demo">
+        <div class="ss-icon">
+          mail
+        </div>
+        <button class="ss-icon">
+          mail
+        </button>
+      </div>
+      <div class="code">
+        <pre>
+          <code>
+.ss-icon
+  mail
+
+%button.ss-icon{:href => "mailto:abc@example.com"}
+  mail
+          </code>
+        </pre>
+      </div>
+    </li>
+  </ul>
+  <ul class="utilities">
+    <li id="symbol-set">
+      <h2 class="label">@mixin symbol(...)</h2>
+      <div class="internals">
+        <p>Inserts an icon as generated content on the element.</p>
+        <ul>
+          <div class="label">Required arguments:</div>
+          <li><code>$symbol</code><p>The name of the icon.</p></li>
+        </ul>
+        <ul>
+          <div class="label">Optional arguments:</div>
+          <li><code>$placement: 'before'</code><p>Pass in <code>'after'</code> to include the symbol in the <code>after</code> pseudo element.</p></li>
+        </ul>
+      </div>
+      <div class="notes">
+        <p>This mixin may be used to enhance text, for example in buttons.</p>
+      </div>
+      <div class="demo">
+        <a href="#" class="button">Call home</a>
+      </div>
+      <div class="code">
+        <pre>
+          <code>
+%a.button{:href => "#"} Call home
+          </code><code>
+.button {
+  @include symbol('phone')
+}
+          </code>
+        </pre>
+      </div>
+    </li>
+  </ul>
 </section>

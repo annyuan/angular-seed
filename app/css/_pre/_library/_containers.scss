@@ -1,0 +1,10 @@
+@mixin panel-background($bgc) {
+  background-color: $bgc
+}
+
+@mixin panel-padding($lines-vertical-padding, $lines-horizontal-padding: $lines-vertical-padding, $font-size: $base-font-size) {
+  @include padding-leader($lines: $lines-vertical-padding, $font-size: $font-size);
+  @include padding-trailer($lines: $lines-vertical-padding, $font-size: $font-size);
+  padding-left: rhythm($lines: $lines-horizontal-padding, $font-size: $font-size);
+  padding-right: rhythm($lines: $lines-horizontal-padding, $font-size: $font-size);
+}
