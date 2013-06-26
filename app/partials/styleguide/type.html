@@ -1,10 +1,43 @@
 <section id="type">
   <h1>Type</h1>
   <ul class="elements">
+    <li id="font-family">
+      <h2 class="label">Font family</h2>
+      <div class="notes">
+        <p>We are using 'Open Sans' from Google Fonts. There are three weights available: 300, 400, and 600. We have an italicized setting available for weights 300 and 400.</p>
+      </div>
+      <div class="demo">
+        <p>Weight 300</p>
+        <p>Weight 400</p>
+        <p>Weight 600</p>
+        <p>Weight 300 italic</p>
+        <p>Weight 400 italic</p>
+      </div>
+      <div class="code">
+        <pre>
+          <code>
+p:nth-of-type(1)
+  @extend .light-text
+
+p:nth-of-type(2)
+  @extend .medium-text
+
+p:nth-of-type(3)
+  @extend .heavy-text
+
+p:nth-of-type(4)
+  @extend .light-text, .emphasized
+
+p:nth-of-type(5) 
+  @extend .medium-text, .emphasized
+          </code>
+        </pre>
+      </div>
+    </li>
     <li id="headings">
       <h2 class="label">Headings</h2>
       <div class="notes">
-        <p>Every page should have an <code>h1</code>.</p>
+        <p>Every page should have an <code>h1</code>. Headings come with font sizes and bottom margins.</p>
       </div>
       <div class="demo">
         <h1>H1 tag</h1>
@@ -27,20 +60,226 @@
         </pre>
       </div>
     </li>
-    <li>
-      <h2 class="label">Links</h2>
+    <li id="a-tags">
+      <h2 class="label"><code>a</code> tags</h2>
+      <div class="notes">
+        <p><code>a</code> tags come just with their text underline removed. Browser color defaults will apply. This is to minimize overrides, as <code>a</code> tags are more often than not styled as buttons.</p>
+      </div>
+      <div class="demo">
+        <a href="#">A plain anchor tag</a>
+      </div>
+      <div class="code">
+        <pre>
+          <code>
+%a A plain anchor tag
+          </code>
+        </pre>
+      </div>
     </li>
-    <li>
-      <h2 class="label">Unordered lists</h2>
+    <li id="lists">
+      <h2 class="label">Lists</h2>
+      <div class="notes">
+        <p>Both ordered and unordered lists have their list styles removed from the reset.</p>
+      </div>
+      <div class="demo">
+        <ul>
+          <li>Unordered list item</li>
+          <li>Another unordered list item</li>
+        </ul>
+        <ol>
+          <li>Ordered list item</li>
+          <li>Another ordered list item</li>
+        </ol>
+      </div>
+      <div class="code">
+        <pre>
+          <code>
+%ul
+  %li Unordered list item
+  %li Another unordered list item
+
+%ol
+  %li Ordered list item
+  %li Another ordered list item
+          </code>
+        </pre>
+      </div>
     </li>
-    <li>
-      <h2 class="label">Ordered lists</h2>
+  </ul>
+  <ul class="utilities">
+    <li id="emphasized">
+      <h2 class="label">%emphasized</h2>
+      <div class="internals"><pre><code>%emphasized
+  font-style: italic</code></pre></div>
+      <div class="demo">
+        <p>text that is emphasized</p>
+      </div>
+      <div class="code">
+        <pre>
+          <code>
+p
+  @extend %emphasized
+          </code>
+        </pre>
+      </div>
     </li>
-    <li>
-      <h2 class="label">Flash messages</h2>
+    <li id="subdued-text">
+      <h2 class="label">%subdued-text</h2>
+      <div class="internals"><pre><code>%subdued-text
+  color: $c-subdued-text</code></pre></div>
+      <div class="demo">
+        <p>text that is subdued</p>
+      </div>
+      <div class="code">
+        <pre>
+          <code>
+p
+  @extend %subdued-text
+          </code>
+        </pre>
+      </div>
     </li>
-    <li>
-      <h2 class="label">Alerts</h2>
+    <li id="bright-text">
+      <h2 class="label">%bright-text</h2>
+      <div class="internals"><pre><code>%bright-text
+  color: $c-bright-text</code></pre></div>
+      <div class="demo">
+        <p>text that is bright</p>
+      </div>
+      <div class="code">
+        <pre>
+          <code>
+p
+  @extend %bright-text
+          </code>
+        </pre>
+      </div>
+    </li>
+    <li id="callout-text">
+      <h2 class="label">%callout-text</h2>
+      <div class="internals"><pre><code>%callout-text
+  color: $c-callout-text</code></pre></div>
+      <div class="demo">
+        <p>text that is being called out</p>
+      </div>
+      <div class="code">
+        <pre>
+          <code>
+p
+  @extend %callout-text
+          </code>
+        </pre>
+      </div>
+    </li>
+    <li id="light-text">
+      <h2 class="label">%light-text</h2>
+      <div class="internals"><pre><code>%light-text
+  font-weight: 300</code></pre></div>
+      <div class="demo">
+        <p>text that is light</p>
+      </div>
+      <div class="code">
+        <pre>
+          <code>
+p
+  @extend %light-text
+          </code>
+        </pre>
+      </div>
+    </li>
+    <li id="medium-text">
+      <h2 class="label">%medium-text</h2>
+      <div class="internals"><pre><code>%medium-text
+  font-weight: 400</code></pre></div>
+      <div class="demo">
+        <p>text that is medium</p>
+      </div>
+      <div class="code">
+        <pre>
+          <code>
+p
+  @extend %medium-text
+          </code>
+        </pre>
+      </div>
+    </li>
+    <li id="heavy-text">
+      <h2 class="label">%heavy-text</h2>
+      <div class="internals"><pre><code>%heavy-text
+  font-weight: 600</code></pre></div>
+      <div class="demo">
+        <p>text that is heavy</p>
+      </div>
+      <div class="code">
+        <pre>
+          <code>
+p
+  @extend %heavy-text
+          </code>
+        </pre>
+      </div>
+    </li>
+    <li id="circled-ol">
+      <h2 class="label">@mixin circled-ol(...)</h2>
+      <div class="internals">
+        <p>Gives the ordered list numbers a circular colored background.</p>
+        <ul>
+          <div class="label">Optional arguments</div>
+          <li><code>$padding-left: ($line-height * 1.25) + 'em'</code><p>The padding on the list item where the circled number will sit.</p></li>
+          <li><code>$left: -.35em</code><p>The left position of the circled number.</p></li>
+          <li><code>$top: 0</code><p>The top position of the circled number.</p></li>
+          <li><code>$font-size: inherit</code><p>The font size of the circled number.</p></li>
+          <li><code>$line-height: 2</code><p>The line height of the circled number.</p></li>
+          <li><code>$c: white</code><p>The color of the circled number.</p></li>
+          <li><code>$bgc: $c-light-gray</code><p>The background color of the circled number.</p></li>
+        </ul>
+      </div>
+      <div class="demo">
+        <ol>
+          <li>First ordered list item</li>
+          <li>Second ordered list item</li>
+          <li>Third ordered list item</li>
+        </ol>
+      </div>
+      <div class="code">
+        <pre>
+          <code>
+%ol
+  %li First ordered list item
+  %li Second ordered list item
+  %li Third ordered list item
+
+ol
+  +circled-ol
+          </code>
+        </pre>
+      </div>
+    </li>
+    <li id="circled-ol-placeholder">
+      <h2 class="label">%circled-ol</h2>
+      <div class="internals">
+        <code>+circled-ol</code>
+      </div>
+      <div class="demo">
+        <ol>
+          <li>First ordered list item</li>
+          <li>Second ordered list item</li>
+          <li>Third ordered list item</li>
+        </ol>
+      </div>
+      <div class="code">
+        <pre>
+          <code>
+%ol
+  %li First ordered list item
+  %li Second ordered list item
+  %li Third ordered list item
+
+ol
+  @extend %circled-ol
+          </code>
+        </pre>
+      </div>
     </li>
   </ul>
 </section>

@@ -28,7 +28,7 @@
   section > h1,
   h3.label,
   .notes p { @extend .light-text; }
-  .notes a { @extend .medium-text; }
+  .notes a { @extend .standard-link, .medium-text; }
   .demo,
   .code {
     @include leader(6);
@@ -69,7 +69,8 @@
       @include bulleted-size(7px);
       @include bulleted-color(darken($c-light-gray, 8%));
       &:not(:first-of-type) {@include leader(4); }
-      &:not(:last-of-type) li {@include trailer(2); }
+      &:not(:last-of-type) {@include trailer(2) }
+      li:not(:last-of-type) {@include trailer(2); }
     }
     li {@include leader(); }
   }
@@ -143,6 +144,25 @@
       @include adjust-font-size-to(24px, 10);
     }
   }
+  .elements #a-tags .demo a,
+  .elements #lists .demo li
+   {
+      @include adjust-font-size-to(18px);
+  }
+  .elements #font-family .demo {
+    p { @include trailer($font-size: $fs-p) }
+    p:nth-of-type(1) { @extend .light-text }
+    p:nth-of-type(2) { @extend .medium-text }
+    p:nth-of-type(3) { @extend .heavy-text }
+    p:nth-of-type(4) { 
+      @extend .light-text;
+      @extend .emphasized;
+    }
+    p:nth-of-type(5) {
+      @extend .medium-text;
+      @extend .emphasized;
+    }
+  }
   .elements #symbol-set {
     .ss-icon {
       @include adjust-font-size-to(24px);
@@ -165,6 +185,33 @@
       }
     }
   }
+  .utilities #circled-symbol {
+    #alert {
+      @include adjust-font-size-to(22px);
+      @include symbol('alert', $color: white, $size: .65em);
+      &:before {
+        @include circled-symbol(6, $c-red);
+        margin-right: .6em;
+        vertical-align: middle;
+        margin-top: -5px;
+      }
+    }
+  }
+  .utilities #circled-ol ol,
+  .utilities #circled-ol-placeholder ol { 
+    @include circled-ol();
+    li {
+      @include adjust-font-size-to(16px);
+      @include trailer($font-size: 16px, $lines: 4)
+    }
+  }
+  .utilities #emphasized p { @extend .emphasized }
+  .utilities #subdued-text p { @extend .subdued-text }
+  .utilities #bright-text p { @extend .bright-text }
+  .utilities #callout-text p { @extend .callout-text }
+  .utilities #light-text p { @extend .light-text }
+  .utilities #medium-text p { @extend .medium-text }
+  .utilities #heavy-text p { @extend .heavy-text }
   .elements #buttons button,
   .elements #buttons .button,
   .utilities #button-green button,
@@ -224,6 +271,10 @@
       &.c-orange {
         background-color: $c-orange;
         &:before { content: "$c-orange" }
+      }
+      &.c-red {
+        background-color: $c-red;
+        &:before { content: "$c-red" }
       }
     }
   }

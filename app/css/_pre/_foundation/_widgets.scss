@@ -8,7 +8,7 @@ nav {
     float: right;
     text-transform: capitalize;
     @include adjust-font-size-to(18px, 8);
-    @extend .standard-link;
+    @include link-style($c-gray, $c-green);
     &.active {
       color: $c-link-active;
     }

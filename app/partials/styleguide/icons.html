@@ -35,11 +35,11 @@
         <p>Inserts an icon as generated content on the element.</p>
         <ul>
           <div class="label">Required arguments:</div>
-          <li><code>$symbol</code><p>The name of the icon.</p></li>
+          <li><code>$symbol</code><p>(quoted string) The name of the icon.</p></li>
         </ul>
         <ul>
           <div class="label">Optional arguments:</div>
-          <li><code>$placement: 'before'</code><p>Pass in <code>'after'</code> to include the symbol in the <code>after</code> pseudo element.</p></li>
+          <li><code>$placement: 'before'</code><p>(quoted string) Pass in <code>'after'</code> to include the symbol in the <code>after</code> pseudo element.</p></li>
         </ul>
       </div>
       <div class="notes">
@@ -53,9 +53,34 @@
           <code>
 %a.button{:href => "#"} Call home
           </code><code>
-.button {
+.button
   @include symbol('phone')
-}
+          </code>
+        </pre>
+      </div>
+    </li>
+    <li id="circled-symbol">
+      <h2 class="label">@mixin circled-symbol(...)</h2>
+      <div class="internals">
+        <p>Gives the icon a colored circle background.</p>
+        <ul>
+          <div class="label">Required arguments:</div>
+          <li><code>$size-in-lines</code><p>(integer) This number will be multiplied by <code>$base-line-height</code> to generate the dimensions of the circle in pixels.</p></li>
+          <li><code>$bgc</code><p>(color variable or code) The color of the background.</p></li>
+        </ul>
+      </div>
+      <div class="demo">
+        <div id="alert">Alert</div>
+      </div>
+      <div class="code">
+        <pre>
+          <code>
+%div#alert Alert
+
+#alert
+  @include symbol('alert', $color: white, $size: .65em)
+  &:before
+    @include circled-symbol(6, $c-red)
           </code>
         </pre>
       </div>

@@ -39,6 +39,10 @@ a {
   text-decoration: none;
 }
 
+em {
+  @extend .emphasized;
+}
+
 code {
   font-family: Consolas;
 }

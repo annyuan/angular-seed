@@ -12,20 +12,22 @@ $fs-li: 18px !default;
 $c-black: #1e1e1e;
 $c-light-gray: #d4d4d4;
 $c-gray: #a09f9f;
+$c-light-green: #b6d99f;
 $c-green: #6eb43f;
 $c-warm-smoke: #faf8f6;
 $c-smoke: whitesmoke;
 $c-orange: #ff5a00;
 $c-blue: #0093d0;
 $c-dark-blue: #1e5065;
+$c-red: #ff0000;
 
 $c-bright-text: $c-black;
 $c-subdued-text: $c-gray;
 $c-text: darken($c-gray, 10%);
 $c-callout-text: $c-green;
 
-$c-link-default: $c-gray;
-$c-link-hover: $c-green;
+$c-link-default: $c-blue;
+$c-link-hover: $c-dark-blue;
 
 $speed-transition: 250ms;
 

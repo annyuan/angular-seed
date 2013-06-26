@@ -69,9 +69,9 @@ a img {
   font-style: normal; }
 
 .ss-icon, .bulleted li:before, #styleguide .utilities .internals ul li:before, #styleguide #styleguide_notes ul li:before, .side-tabs li.active:before, #styleguide .tabs li.active:before, .zippy.opened .title:before, .zippy.closed .title:before, #styleguide .utilities #symbol-set .button:before, #styleguide .utilities #symbol-set
-button:before, .collection-container .collection-heading #grade-chooser:before,
+button:before, #styleguide .utilities #circled-symbol #alert:before, .collection-container .collection-heading #grade-chooser:before,
 .collection-container .collection-heading #subject-chooser:before, .collection-container .showcase .sidetabs li.selected:before, .collection-container .tools li.mastery_quiz:before, .collection-container .tools li.diagnostic_quiz:before, .collection-container .tools li.practice_problems:before, .collection-container .tools li.example_work:before, .collection-container .tools li.performance_task:before, .collection-container .tools li.expert_commentary:before, .ss-icon.ss-standard, .bulleted li.ss-standard:before, #styleguide .utilities .internals ul li.ss-standard:before, #styleguide #styleguide_notes ul li.ss-standard:before, .side-tabs li.ss-standard.active:before, #styleguide .tabs li.ss-standard.active:before, .zippy.opened .ss-standard.title:before, .zippy.closed .ss-standard.title:before, #styleguide .utilities #symbol-set .ss-standard.button:before, #styleguide .utilities #symbol-set
-button.ss-standard:before, .collection-container .collection-heading .ss-standard#grade-chooser:before,
+button.ss-standard:before, #styleguide .utilities #circled-symbol .ss-standard#alert:before, .collection-container .collection-heading .ss-standard#grade-chooser:before,
 .collection-container .collection-heading .ss-standard#subject-chooser:before, .collection-container .showcase .sidetabs li.ss-standard.selected:before, .collection-container .tools li.ss-standard.mastery_quiz:before, .collection-container .tools li.ss-standard.diagnostic_quiz:before, .collection-container .tools li.ss-standard.practice_problems:before, .collection-container .tools li.ss-standard.example_work:before, .collection-container .tools li.ss-standard.performance_task:before, .collection-container .tools li.ss-standard.expert_commentary:before,
 [class^="ss-"]:before, [class*=" ss-"]:before,
 [class^="ss-"].ss-standard:before, [class*=" ss-"].ss-standard:before,
@@ -466,7 +466,7 @@ button.right:after {
 .ss-info:before, .ss-info.right:after {
   content: 'ℹ'; }
 
-.ss-alert:before, .ss-alert.right:after {
+.ss-alert:before, #styleguide .utilities #circled-symbol #alert:before, .ss-alert.right:after, #styleguide .utilities #circled-symbol .right#alert:after {
   content: '⚠'; }
 
 .ss-caution:before, .ss-caution.right:after {
@@ -582,28 +582,91 @@ button.right:after {
 .ss-retweet:before, .ss-retweet.right:after {
   content: ''; }
 
-.standard-link, nav a {
+.emphasized, em, #styleguide .elements #font-family .demo p:nth-of-type(4), #styleguide .elements #font-family .demo p:nth-of-type(5), #styleguide .utilities #emphasized p {
+  font-style: italic; }
+
+.subdued-text, #styleguide .utilities #subdued-text p, .collection-container .lesson-set h3:before, .collection-container .tools h3 {
+  color: #a09f9f; }
+
+.bright-text, #styleguide .utilities #bright-text p {
+  color: #1e1e1e; }
+
+.callout-text, #styleguide section > h1, #styleguide ul.elements h2.label, #styleguide #styleguide_notes h1, #styleguide .utilities #callout-text p {
+  color: #6eb43f; }
+
+.light-text, .switcher li, .side-tabs li, #styleguide .tabs li, #styleguide section > h1,
+#styleguide h3.label,
+#styleguide .notes p, #styleguide #styleguide_notes li,
+#styleguide #styleguide_notes p, #styleguide .elements #font-family .demo p:nth-of-type(1), #styleguide .elements #font-family .demo p:nth-of-type(4), #styleguide .utilities #light-text p, .collection-container .lesson-set h3:before, .collection-container .showcase .sidetabs li, .collection-container .tools h3, .collection-container .tools .toolsExpander .showcaseToolContent {
+  font-weight: 300; }
+
+.medium-text, .button,
+button, #styleguide section > h1, #styleguide h2.label, #styleguide .notes a, #styleguide #styleguide_notes h3.label, #styleguide .elements #font-family .demo p:nth-of-type(2), #styleguide .elements #font-family .demo p:nth-of-type(5), #styleguide .utilities #medium-text p {
+  font-weight: 400; }
+
+.heavy-text, #styleguide .elements #font-family .demo p:nth-of-type(3), #styleguide .utilities #heavy-text p {
+  font-weight: 600; }
+
+.standard-link, #styleguide .notes a {
   -webkit-transition: color 250ms;
   -moz-transition: color 250ms;
   -ms-transition: color 250ms;
   -o-transition: color 250ms;
   transition: color 250ms;
-  color: #a09f9f; }
-  .standard-link:hover, nav a:hover {
+  color: #0093d0; }
+  .standard-link:hover, #styleguide .notes a:hover {
     cursor: pointer;
-    color: #6eb43f; }
+    color: #1e5065; }
 
+/**
+ *
+ * for every presentational concept, like a bulleted list, or a circled number list, there is a mixin and then one placeholder selector that includes the mixin using its default argument values
+ * maybe the name is "standard-" + concept_name
+ * but what about the styles that don't fit into those?
+ * maybe there's a setup placeholder class? maybe it's just the concept name?
+ *
+ * example: 
+ *
+ * @mixin circled-ol(...)
+ *
+ * %circled-ol
+ *  @include circled-ol()
+ *
+ * in app styles...
+ *
+ * .someClass
+ *  @extend %circled-ol
+ *
+ * .someOtherClass
+ *  @include circled-ol()
+ *
+ * so the below stuff makes sense, but what about for buttons? would it be better to combine all the button settings into one big mixin? if you want a button, you say ".button {extend button-medium, +button-color()}", should you instead say ".button {include button(color: green, size: medium)}" if you want a medium button? 
+ * the problem is that you can't extend prepackaged settings AND use the swiss army mixin (so either you have decomposed mixins with prepackaged settings OR you have a swiss army knife) because then the mixin default values will override the settings, but prepackaged settings are nice because sometimes a couple properties go together (like color and background color). 
+ * the reason it made intuitive sense to go in the swiss army knife direction with the circled-ol is that there aren't so many configurations - most of the time you want to use the default color values and you only want to modify the font size. 
+ * potential solution: if properties go together, then express those relationships in the mixin?
+ * this sounds good, I think. then for some mixins, like the circled-symbol(), there aren't prepackaged settings because it's not as important to have a standardized set of circled symbols as it is to have a standardized set of buttons.
+ * 
+ */
 .circled-ol {
   list-style: none;
   counter-reset: numList; }
   .circled-ol li {
-    position: relative; }
+    position: relative;
+    padding-left: 2.5em; }
     .circled-ol li:before {
       position: absolute;
       counter-increment: numList;
       content: counter(numList);
       text-align: center;
-      border-radius: 50%; }
+      border-radius: 50%;
+      color: white;
+      background-color: #d4d4d4;
+      left: 0;
+      top: -0.35em;
+      font-size: inherit;
+      line-height: 2;
+      height: 2em;
+      width: 2em; }
 
 .bulleted li, #styleguide .utilities .internals ul li, #styleguide #styleguide_notes ul li {
   position: relative; }
@@ -612,28 +675,6 @@ button.right:after {
     font-size: "inherit"; }
   .bulleted li:before, #styleguide .utilities .internals ul li:before, #styleguide #styleguide_notes ul li:before {
     position: absolute; }
-
-.subdued-text, .collection-container .lesson-set h3:before, .collection-container .tools h3 {
-  color: #a09f9f; }
-
-.bright-text {
-  color: #1e1e1e; }
-
-.callout-text, #styleguide section > h1, #styleguide ul.elements h2.label, #styleguide #styleguide_notes h1 {
-  color: #6eb43f; }
-
-.light-text, .switcher li, .side-tabs li, #styleguide .tabs li, #styleguide section > h1,
-#styleguide h3.label,
-#styleguide .notes p, #styleguide #styleguide_notes li,
-#styleguide #styleguide_notes p, .collection-container .lesson-set h3:before, .collection-container .showcase .sidetabs li, .collection-container .tools h3, .collection-container .tools .toolsExpander .showcaseToolContent {
-  font-weight: 300; }
-
-.medium-text, .button,
-button, #styleguide section > h1, #styleguide h2.label, #styleguide .notes a, #styleguide #styleguide_notes h3.label {
-  font-weight: 400; }
-
-.heavy-text {
-  font-weight: 600; }
 
 /**
  * UTILITIES
@@ -660,7 +701,7 @@ button {
  */
 .button-green, #styleguide .elements #symbol-set button.ss-icon, #styleguide .elements #symbol-set .zippy.opened button.title:before, .zippy.opened #styleguide .elements #symbol-set button.title:before, #styleguide .elements #symbol-set .zippy.closed button.title:before, .zippy.closed #styleguide .elements #symbol-set button.title:before, #styleguide .elements .utilities #symbol-set button.button:before, #styleguide .utilities .elements #symbol-set button.button:before, #styleguide .elements #symbol-set .utilities #symbol-set
 button:before, #styleguide .utilities .elements #symbol-set #symbol-set
-button:before, #styleguide .elements #symbol-set .collection-container .collection-heading button#grade-chooser:before, .collection-container .collection-heading #styleguide .elements #symbol-set button#grade-chooser:before,
+button:before, #styleguide .elements #symbol-set .utilities #circled-symbol button#alert:before, #styleguide .utilities #circled-symbol .elements #symbol-set button#alert:before, #styleguide .elements #symbol-set .collection-container .collection-heading button#grade-chooser:before, .collection-container .collection-heading #styleguide .elements #symbol-set button#grade-chooser:before,
 #styleguide .elements #symbol-set .collection-container .collection-heading button#subject-chooser:before,
 .collection-container .collection-heading #styleguide .elements #symbol-set button#subject-chooser:before, #styleguide .utilities #symbol-set .button, #styleguide .utilities #symbol-set
 button, #styleguide .elements #buttons button,
@@ -671,7 +712,7 @@ button, #styleguide .elements #buttons button,
   background-color: #6eb43f; }
   .button-green:hover, #styleguide .elements #symbol-set button.ss-icon:hover, #styleguide .elements #symbol-set .zippy.opened button.title:hover:before, .zippy.opened #styleguide .elements #symbol-set button.title:hover:before, #styleguide .elements #symbol-set .zippy.closed button.title:hover:before, .zippy.closed #styleguide .elements #symbol-set button.title:hover:before, #styleguide .elements .utilities #symbol-set button.button:hover:before, #styleguide .utilities .elements #symbol-set button.button:hover:before, #styleguide .elements #symbol-set .utilities #symbol-set
   button:hover:before, #styleguide .utilities .elements #symbol-set #symbol-set
-  button:hover:before, #styleguide .elements #symbol-set .collection-container .collection-heading button#grade-chooser:hover:before, .collection-container .collection-heading #styleguide .elements #symbol-set button#grade-chooser:hover:before,
+  button:hover:before, #styleguide .elements #symbol-set .utilities #circled-symbol button#alert:hover:before, #styleguide .utilities #circled-symbol .elements #symbol-set button#alert:hover:before, #styleguide .elements #symbol-set .collection-container .collection-heading button#grade-chooser:hover:before, .collection-container .collection-heading #styleguide .elements #symbol-set button#grade-chooser:hover:before,
   #styleguide .elements #symbol-set .collection-container .collection-heading button#subject-chooser:hover:before,
   .collection-container .collection-heading #styleguide .elements #symbol-set button#subject-chooser:hover:before, #styleguide .utilities #symbol-set .button:hover, #styleguide .utilities #symbol-set
   button:hover, #styleguide .elements #buttons button:hover,
@@ -754,7 +795,16 @@ nav {
     float: right;
     text-transform: capitalize;
     font-size: 1.385em;
-    line-height: 2.222em; }
+    line-height: 2.222em;
+    -webkit-transition: color 250ms;
+    -moz-transition: color 250ms;
+    -ms-transition: color 250ms;
+    -o-transition: color 250ms;
+    transition: color 250ms;
+    color: #a09f9f; }
+    nav a:hover {
+      cursor: pointer;
+      color: #6eb43f; }
     nav a.active {
       color: #6eb43f; }
 
@@ -813,14 +863,37 @@ nav {
 .fade-show {
   opacity: 0; }
 
-.button-disabled {
+.disabled.button,
+button.disabled,
+button.disabled {
   color: white;
   background-color: #d4d4d4; }
-  .button-disabled:hover {
+  .disabled.button:hover,
+  button.disabled:hover,
+  button.disabled:hover {
     color: white;
     background-color: #d4d4d4; }
-  .button-disabled:hover {
+  .disabled.button:hover,
+  button.disabled:hover,
+  button.disabled:hover {
     cursor: default; }
+
+#flash {
+  margin-bottom: 1.111em;
+  font-size: 1.385em;
+  line-height: 1.389em;
+  padding-top: 0.833em;
+  padding-bottom: 0.833em;
+  padding-left: 1.111em;
+  padding-right: 1.111em; }
+
+#flash.success {
+  background-color: #d2e7c4;
+  color: #62a138; }
+
+#flash.warning {
+  background-color: #ffcccc;
+  color: #e60000; }
 
 #styleguide section > h1 {
   font-size: 3.846em;
@@ -888,7 +961,9 @@ nav {
     color: silver; }
   #styleguide .utilities .internals ul:not(:first-of-type) {
     margin-top: 1.538em; }
-  #styleguide .utilities .internals ul:not(:last-of-type) li {
+  #styleguide .utilities .internals ul:not(:last-of-type) {
+    margin-bottom: 0.769em; }
+  #styleguide .utilities .internals ul li:not(:last-of-type) {
     margin-bottom: 0.769em; }
   #styleguide .utilities .internals li {
     margin-top: 0.385em; }
@@ -981,9 +1056,15 @@ nav {
 #styleguide .nav-tabs li {
   font-size: 1.846em;
   line-height: 2.083em; }
+#styleguide .elements #a-tags .demo a,
+#styleguide .elements #lists .demo li {
+  font-size: 1.385em;
+  line-height: 1.389em; }
+#styleguide .elements #font-family .demo p {
+  margin-bottom: 0.278em; }
 #styleguide .elements #symbol-set .ss-icon, #styleguide .elements #symbol-set .bulleted li:before, .bulleted #styleguide .elements #symbol-set li:before, #styleguide .elements #symbol-set .utilities .internals ul li:before, #styleguide .utilities .internals ul .elements #symbol-set li:before, #styleguide .elements #symbol-set #styleguide_notes ul li:before, #styleguide #styleguide_notes ul .elements #symbol-set li:before, #styleguide .elements #symbol-set .side-tabs li.active:before, .side-tabs #styleguide .elements #symbol-set li.active:before, #styleguide .elements #symbol-set .tabs li.active:before, #styleguide .tabs .elements #symbol-set li.active:before, #styleguide .elements #symbol-set .zippy.opened .title:before, .zippy.opened #styleguide .elements #symbol-set .title:before, #styleguide .elements #symbol-set .zippy.closed .title:before, .zippy.closed #styleguide .elements #symbol-set .title:before, #styleguide .elements .utilities #symbol-set .button:before, #styleguide .utilities .elements #symbol-set .button:before, #styleguide .elements #symbol-set .utilities #symbol-set
 button:before, #styleguide .utilities .elements #symbol-set #symbol-set
-button:before, #styleguide .elements #symbol-set .collection-container .collection-heading #grade-chooser:before, .collection-container .collection-heading #styleguide .elements #symbol-set #grade-chooser:before,
+button:before, #styleguide .elements #symbol-set .utilities #circled-symbol #alert:before, #styleguide .utilities #circled-symbol .elements #symbol-set #alert:before, #styleguide .elements #symbol-set .collection-container .collection-heading #grade-chooser:before, .collection-container .collection-heading #styleguide .elements #symbol-set #grade-chooser:before,
 #styleguide .elements #symbol-set .collection-container .collection-heading #subject-chooser:before,
 .collection-container .collection-heading #styleguide .elements #symbol-set #subject-chooser:before, #styleguide .elements #symbol-set .collection-container .showcase .sidetabs li.selected:before, .collection-container .showcase .sidetabs #styleguide .elements #symbol-set li.selected:before, #styleguide .elements #symbol-set .collection-container .tools li.mastery_quiz:before, .collection-container .tools #styleguide .elements #symbol-set li.mastery_quiz:before, #styleguide .elements #symbol-set .collection-container .tools li.diagnostic_quiz:before, .collection-container .tools #styleguide .elements #symbol-set li.diagnostic_quiz:before, #styleguide .elements #symbol-set .collection-container .tools li.practice_problems:before, .collection-container .tools #styleguide .elements #symbol-set li.practice_problems:before, #styleguide .elements #symbol-set .collection-container .tools li.example_work:before, .collection-container .tools #styleguide .elements #symbol-set li.example_work:before, #styleguide .elements #symbol-set .collection-container .tools li.performance_task:before, .collection-container .tools #styleguide .elements #symbol-set li.performance_task:before, #styleguide .elements #symbol-set .collection-container .tools li.expert_commentary:before, .collection-container .tools #styleguide .elements #symbol-set li.expert_commentary:before {
   font-size: 1.846em;
@@ -991,7 +1072,7 @@ button:before, #styleguide .elements #symbol-set .collection-container .collecti
   display: inline-block; }
 #styleguide .elements #symbol-set button.ss-icon, #styleguide .elements #symbol-set .zippy.opened button.title:before, .zippy.opened #styleguide .elements #symbol-set button.title:before, #styleguide .elements #symbol-set .zippy.closed button.title:before, .zippy.closed #styleguide .elements #symbol-set button.title:before, #styleguide .elements .utilities #symbol-set button.button:before, #styleguide .utilities .elements #symbol-set button.button:before, #styleguide .elements #symbol-set .utilities #symbol-set
 button:before, #styleguide .utilities .elements #symbol-set #symbol-set
-button:before, #styleguide .elements #symbol-set .collection-container .collection-heading button#grade-chooser:before, .collection-container .collection-heading #styleguide .elements #symbol-set button#grade-chooser:before,
+button:before, #styleguide .elements #symbol-set .utilities #circled-symbol button#alert:before, #styleguide .utilities #circled-symbol .elements #symbol-set button#alert:before, #styleguide .elements #symbol-set .collection-container .collection-heading button#grade-chooser:before, .collection-container .collection-heading #styleguide .elements #symbol-set button#grade-chooser:before,
 #styleguide .elements #symbol-set .collection-container .collection-heading button#subject-chooser:before,
 .collection-container .collection-heading #styleguide .elements #symbol-set button#subject-chooser:before {
   margin-left: 1em;
@@ -1004,6 +1085,52 @@ button:before {
 #styleguide .utilities #symbol-set .button:before, #styleguide .utilities #symbol-set
 button:before {
   margin-right: .5em; }
+#styleguide .utilities #circled-symbol #alert {
+  font-size: 1.692em;
+  line-height: 1.364em; }
+  #styleguide .utilities #circled-symbol #alert:before {
+    color: white;
+    font-size: 0.65em; }
+  #styleguide .utilities #circled-symbol #alert:before {
+    background-color: red;
+    display: inline-block;
+    box-sizing: border-box;
+    text-align: center;
+    border-radius: 50%;
+    height: 30px;
+    width: 30px;
+    line-height: 30px;
+    margin-right: .6em;
+    vertical-align: middle;
+    margin-top: -5px; }
+#styleguide .utilities #circled-ol ol,
+#styleguide .utilities #circled-ol-placeholder ol {
+  list-style: none;
+  counter-reset: numList; }
+  #styleguide .utilities #circled-ol ol li,
+  #styleguide .utilities #circled-ol-placeholder ol li {
+    position: relative;
+    padding-left: 2.5em; }
+    #styleguide .utilities #circled-ol ol li:before,
+    #styleguide .utilities #circled-ol-placeholder ol li:before {
+      position: absolute;
+      counter-increment: numList;
+      content: counter(numList);
+      text-align: center;
+      border-radius: 50%;
+      color: white;
+      background-color: #d4d4d4;
+      left: 0;
+      top: -0.35em;
+      font-size: inherit;
+      line-height: 2;
+      height: 2em;
+      width: 2em; }
+  #styleguide .utilities #circled-ol ol li,
+  #styleguide .utilities #circled-ol-placeholder ol li {
+    font-size: 1.231em;
+    line-height: 1.25em;
+    margin-bottom: 1.25em; }
 #styleguide .elements #buttons button,
 #styleguide .elements #buttons .button,
 #styleguide .elements #buttons
@@ -1064,6 +1191,10 @@ button,
     background-color: #ff5a00; }
     #styleguide ul.swatches li[class^="c-"].c-orange:before {
       content: "$c-orange"; }
+  #styleguide ul.swatches li[class^="c-"].c-red {
+    background-color: red; }
+    #styleguide ul.swatches li[class^="c-"].c-red:before {
+      content: "$c-red"; }
 
 html {
   overflow-x: hidden; }

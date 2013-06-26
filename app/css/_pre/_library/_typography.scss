@@ -1,3 +1,31 @@
+.emphasized {
+  font-style: italic;
+}
+
+.subdued-text {
+  color: $c-subdued-text;
+}
+
+.bright-text {
+  color: $c-bright-text;
+}
+
+.callout-text {
+  color: $c-callout-text;
+}
+
+.light-text {
+  font-weight: 300;
+}
+
+.medium-text {
+  font-weight: 400;
+}
+
+.heavy-text {
+  font-weight: 600;
+}
+
 @mixin link-style($color: $c-link-default, $color-hover: $c-link-hover) {
   @include transition(color $speed-transition);
   color: $color;
@@ -11,38 +39,65 @@
   @include link-style;
 }
 
-.circled-ol {
+/**
+ *
+ * for every presentational concept, like a bulleted list, or a circled number list, there is a mixin and then one placeholder selector that includes the mixin using its default argument values
+ * maybe the name is "standard-" + concept_name
+ * but what about the styles that don't fit into those?
+ * maybe there's a setup placeholder class? maybe it's just the concept name?
+ *
+ * example: 
+ *
+ * @mixin circled-ol(...)
+ *
+ * %circled-ol
+ *  @include circled-ol()
+ *
+ * in app styles...
+ *
+ * .someClass
+ *  @extend %circled-ol
+ *
+ * .someOtherClass
+ *  @include circled-ol()
+ *
+ * so the below stuff makes sense, but what about for buttons? would it be better to combine all the button settings into one big mixin? if you want a button, you say ".button {extend button-medium, +button-color()}", should you instead say ".button {include button(color: green, size: medium)}" if you want a medium button? 
+ * the problem is that you can't extend prepackaged settings AND use the swiss army mixin (so either you have decomposed mixins with prepackaged settings OR you have a swiss army knife) because then the mixin default values will override the settings, but prepackaged settings are nice because sometimes a couple properties go together (like color and background color). 
+ * the reason it made intuitive sense to go in the swiss army knife direction with the circled-ol is that there aren't so many configurations - most of the time you want to use the default color values and you only want to modify the font size. 
+ * potential solution: if properties go together, then express those relationships in the mixin?
+ * this sounds good, I think. then for some mixins, like the circled-symbol(), there aren't prepackaged settings because it's not as important to have a standardized set of circled symbols as it is to have a standardized set of buttons.
+ * 
+ */
+
+@mixin circled-ol($padding-left: "", $left: 0, $top: -.35em, $font-size: inherit, $line-height: 2, $c: white, $bgc: $c-light-gray) {
+  $size: $line-height + 'em';
+  @if $padding-left == "" {
+    $padding-left: ($line-height * 1.25) + 'em';
+  }
   list-style: none;
   counter-reset: numList;
   li {
     position: relative;
+    padding-left: #{$padding-left};
     &:before {
       position: absolute;
       counter-increment: numList;
       content: counter(numList);
       text-align: center;
       border-radius: 50%;
-    }
-  }
-}
-
-@mixin circled-ol($padding-left: "", $left: 0, $top: 0, $font-size: inherit, $line-height: 2, $color: white, $background-color: $c-light-gray) {
-  $size: $line-height + 'em';
-  @if $padding-left == "" {
-    $padding-left: $line-height + 'em';
-  }
-  li {
-    padding-left: #{$padding-left};
-    &:before {
+      color: $c;
+      background-color: $bgc;
       left: $left;
       top: $top;
       font-size: $font-size;
       line-height: $line-height;
       @include square(#{$size});
-      color: $color;
-      background-color: $background-color;
     }
   }
+}
+
+.circled-ol {
+  @include circled-ol();
 }
 
 .bulleted {
@@ -73,26 +128,3 @@
   li:before {font-size: $size }
 }
 
-.subdued-text {
-  color: $c-subdued-text;
-}
-
-.bright-text {
-  color: $c-bright-text;
-}
-
-.callout-text {
-  color: $c-callout-text;
-}
-
-.light-text {
-  font-weight: 300;
-}
-
-.medium-text {
-  font-weight: 400;
-}
-
-.heavy-text {
-  font-weight: 600;
-}

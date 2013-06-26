@@ -7,3 +7,13 @@
   }
   @extend #{$ss-class};
 }
+
+@mixin circled-symbol($size-in-lines, $bgc) {
+  background-color: $bgc;
+  display: inline-block;
+  box-sizing: border-box;
+  text-align: center;
+  border-radius: 50%;
+  @include square($size-in-lines * $base-line-height);
+  line-height: $size-in-lines * $base-line-height;
+}
