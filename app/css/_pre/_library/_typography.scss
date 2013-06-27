@@ -12,12 +12,12 @@
 
 .heavy-text {font-weight: 600; }
 
-@mixin link-style($color: $c-link-default, $color-hover: $c-link-hover) {
+@mixin link-style($c: $c-link-default, $c-hover: $c-link-hover) {
   @include transition(color $speed-transition);
-  color: $color;
+  color: $c;
   &:hover {
     cursor: pointer;
-    color: $color-hover;
+    color: $c-hover;
   }
 }
 

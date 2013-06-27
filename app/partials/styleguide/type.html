@@ -17,19 +17,19 @@
         <pre>
           <code>
 p:nth-of-type(1)
-  @extend .light-text
+  @extend %light-text
 
 p:nth-of-type(2)
-  @extend .medium-text
+  @extend %medium-text
 
 p:nth-of-type(3)
-  @extend .heavy-text
+  @extend %heavy-text
 
 p:nth-of-type(4)
-  @extend .light-text, .emphasized
+  @extend %light-text, %emphasized
 
 p:nth-of-type(5) 
-  @extend .medium-text, .emphasized
+  @extend %medium-text, %emphasized
           </code>
         </pre>
       </div>
@@ -219,12 +219,49 @@ p
         </pre>
       </div>
     </li>
+    <li id="link-style">
+      <h2 class="label">=link-style</h2>
+      <div class="internals">
+        <ul>
+          <div class="label">Optional arguments:</div>
+          <li><code>$c: $c-link-default</code><p>Link text color.</p></li>
+          <li><code>$c-hover</code><p>Link text color on hover.</p></li>
+        </ul>
+      </div>
+      <div class="demo">
+        <a href="#">A link</a>
+      </div>
+      <div class="code">
+        <pre>
+          <code>
+a
+  +link-style($c-gray, $c-red)
+          </code>
+        </pre>
+      </div>
+    </li>
+    <li id="standard-link">
+      <h2 class="label">%standard-link</h2>
+      <div class="internals"><pre><code>%standard-link
+  +link-style</code></pre></div>
+      <div class="demo">
+        <a href="#">A standard link</a>
+      </div>
+      <div class="code">
+        <pre>
+          <code>
+a
+  @extend %standard-link
+          </code>
+        </pre>
+      </div>
+    </li>
     <li id="circled-ol">
       <h2 class="label">=circled-ol</h2>
       <div class="internals">
         <p>Gives the ordered list numbers a circular colored background.</p>
         <ul>
-          <div class="label">Optional arguments</div>
+          <div class="label">Optional arguments:</div>
           <li><code>$padding-left: ($line-height * 1.25) + 'em'</code><p>The padding on the list item where the circled number will sit.</p></li>
           <li><code>$left: -.35em</code><p>The left position of the circled number.</p></li>
           <li><code>$top: 0</code><p>The top position of the circled number.</p></li>
@@ -244,11 +281,6 @@ p
       <div class="code">
         <pre>
           <code>
-%ol
-  %li First ordered list item
-  %li Second ordered list item
-  %li Third ordered list item
-
 ol
   +circled-ol
           </code>
@@ -269,11 +301,6 @@ ol
       <div class="code">
         <pre>
           <code>
-%ol
-  %li First ordered list item
-  %li Second ordered list item
-  %li Third ordered list item
-
 ol
   @extend %circled-ol
           </code>
@@ -303,11 +330,6 @@ ol
       <div class="code">
         <pre>
           <code>
-%ul
-  %li First bulleted list item
-  %li Second bulleted list item
-  %li Third bulleted list item
-
 ul
   +bulleted-list
           </code>
@@ -328,11 +350,6 @@ ul
       <div class="code">
         <pre>
           <code>
-%ul
-  %li First bulleted list item
-  %li Second bulleted list item
-  %li Third bulleted list item
-
 ul
   @extend %bulleted-list
           </code>

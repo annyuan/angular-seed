@@ -1,23 +1,254 @@
 <section id="forms">
   <h1>Forms</h1>
+  <div class="notes">
+    <p>Although we're not using Twitter Bootstrap's form styles, I think we're still using the gem simple_form to create our forms, which generates forms that conform to Bootstrap's markup conventions. So if you're building a form from scratch, I guess it would make sense to try to follow those conventions until we decide to switch form gems?</p>
+  </div>
   <ul class="elements">
     <li id="inputs">
       <h2 class="label">Inputs</h2>
-    </li>
-    <li id="labels">
-      <h2 class="label">Labels</h2>
+      <div class="notes">
+        <p>simple_form wraps any inputs, checkboxes, and radio buttons in a <code>div</code> with the class <code>control-group</code>.</p>
+      </div>
+      <div class="demo">
+        <form action="">
+          <div class="control-group string">
+            <label for="" class="control-label"><abbr title="">*</abbr>Name</label>
+            <div class="controls">
+              <input type="text" class="string" placeholder="Name">
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="code">
+        <pre>
+          <code>
+%form
+  .control-group.string
+    %label.control-label
+      %abbr *
+      Name
+    .controls
+      %input{:type => "text"}
+          </code>
+        </pre>
+      </div>
     </li>
     <li id="checkboxes">
       <h2 class="label">Checkboxes</h2>
+      <div class="demo">
+        <form action="">
+          <div class="control-group">
+            <div class="controls">
+              <label for="" class="control-label">
+                <input type="checkbox">
+                Teacher
+              </label>
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="code">
+        <pre>
+          <code>
+%form
+  .control-group
+    .controls
+      %label.control-label
+        %input{:type => "checkbox"}
+        Teacher
+          </code>
+        </pre>
+      </div>
     </li>
     <li id="radio-buttons">
       <h2 class="label">Radio buttons</h2>
+      <div class="demo">
+        <form action="">
+          <div class="control-group">
+            <div class="controls">
+              <label for="" class="control-label">
+                <input type="radio">
+                Yes
+              </label>
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="code">
+        <pre>
+          <code>
+%form
+  .control-group
+    .controls
+      %label.control-label
+        %input{:type => "radio"}
+        Teacher
+          </code>
+        </pre>
+      </div>
     </li>
     <li id="error-states">
       <h2 class="label">Error states</h2>
+      <div class="demo">
+        <form action="">
+          <div class="control-group string error">
+            <label for="" class="control-label"><abbr title="">*</abbr>Name</label>
+            <div class="controls">
+              <input type="text" class="string" placeholder="Name">
+              <span class="help">Some helpful text</span>
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="code">
+        <pre>
+          <code>
+%form
+  .control-group.string.error
+    %label.control-label
+      %abbr *
+      Name
+    .controls
+      %input{:type => "text"}
+      %span.help Some helpful text
+          </code>
+        </pre>
+      </div>
     </li>
     <li id="help-text">
-      <h2 class="label">Help text</h2>
+      <h2 class="label">Action buttons</h2>
+      <div class="demo">
+        <a href="" class="cancel button">Cancel</a>
+        <input type="submit" value="Submit">
+      </div>
+      <div class="code">
+        <pre>
+          <code>
+%a.cancel.button Cancel
+%input{:type => "submit", :value => "Submit"}
+          </code>
+        </pre>
+      </div>
+    </li>
+  </ul>
+  <ul class="utilities">
+    <li id="control-group">
+      <h2 class="label">=control-group</h2>
+      <div class="internals">
+        <p>Use this mixin to configure the <code>control-group</code> div contents.</p>
+        <ul>
+          <div class="label">Optional arguments:</div>
+          <li><code>$replace-labels-with-placeholder: false</code><p>Pass in <code>true</code> to hide the <code>.control-label</code> for input fields when the browser supports placeholder text.</p></li>
+          <li><code>$control-group-size: false</code><p>(quoted string) Pass in a member of the <code>$control-group-sizes</code> list to configure font size and spacers.</p></li>
+          <li><code>$block-help: false</code><p>Pass in <code>true</code> to block display error help text.</p></li>
+          <li><code>$horizontal-labels: false</code><p>Pass in <code>true</code> to display <code>.control-label</code> divs for input fields and input fields side by side.</p></li>
+          <li><code>$horizontal-label-width: 5em</code><p>(any valid CSS <code>width</code> value) If <code>$horizontal-labels</code> is set to true, then the mixin will output a width for the <code>.control-label</code> divs.</p></li>
+        </ul>
+      </div>
+      <div class="demo">
+        <form action="">
+          <div class="control-group string">
+            <label for="" class="control-label"><abbr title="">*</abbr>Name</label>
+            <div class="controls">
+              <input type="text" class="string" placeholder="Name">
+            </div>
+          </div>
+        </form>
+        <form action="">
+          <div class="control-group string">
+            <label for="" class="control-label"><abbr title="">*</abbr>Name</label>
+            <div class="controls">
+              <input type="text" class="string" placeholder="Name">
+            </div>
+          </div>
+        </form>
+        <form action="">
+          <div class="control-group string error">
+            <label for="" class="control-label"><abbr title="">*</abbr>Name</label>
+            <div class="controls">
+              <input type="text" class="string" placeholder="Name">
+              <span class="help">Some helpful text</span>
+            </div>
+          </div>
+        </form>
+        <form action="">
+          <div class="control-group string error">
+            <label for="" class="control-label"><abbr title="">*</abbr>Name</label>
+            <div class="controls">
+              <input type="text" class="string" placeholder="Name">
+              <span class="help">Some helpful text</span>
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="code">
+        <pre>
+          <code>
+form:first-of-type
+  +control-group($replace-labels-with-placeholders: true)
+
+form:nth-of-type(2)
+  +control-group($control-group-size: 'small')
+
+form:nth-of-type(3)
+  +control-group($horizontal-labels: true)
+
+form:nth-of-type(4)
+  +control-group($block-help: true)
+          </code>
+        </pre>
+      </div>
+    </li>
+    <li id="control-group-sizes">
+      <h2 class="label">$control-group-sizes</h2>
+      <div class="internals">
+        <ul>
+          <div class="label">Items:</div>
+          <li><code>'small'</code></li>
+          <li><code>'medium'</code></li>
+          <li><code>'large'</code></li>
+        </ul>
+      </div>
+      <div class="demo">
+        <form action="">
+          <div class="control-group string">
+            <label for="" class="control-label"><abbr title="">*</abbr>Name</label>
+            <div class="controls">
+              <input type="text" class="string" placeholder="Name">
+            </div>
+          </div>
+        </form>
+        <form action="">
+          <div class="control-group string">
+            <label for="" class="control-label"><abbr title="">*</abbr>Name</label>
+            <div class="controls">
+              <input type="text" class="string" placeholder="Name">
+            </div>
+          </div>
+        </form>
+        <form action="">
+          <div class="control-group string">
+            <label for="" class="control-label"><abbr title="">*</abbr>Name</label>
+            <div class="controls">
+              <input type="text" class="string" placeholder="Name">
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="code">
+        <pre>
+          <code>
+form:first-of-type
+  +control-group($control-group-size: 'small')
+
+form:nth-of-type(2)
+  +control-group($control-group-size: 'medium')
+
+form:nth-of-type(3)
+  +control-group($control-group-size: 'large') 
+          </code>
+        </pre>
+      </div>
     </li>
   </ul>
 </section>

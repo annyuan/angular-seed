@@ -5,6 +5,7 @@
     @include adjust-font-size-to($fs-h1);
     @include trailer($font-size: $fs-h1, $lines: 8);
     @extend .medium-text, .callout-text;
+    + .notes {@include trailer(6) }
   }
   .code {
     code {@include adjust-font-size-to(18px); }
@@ -56,7 +57,7 @@
       @include bulleted-list($font-size: 8px, $top: .25em, $left: .2em);
       &:not(:first-of-type) {@include leader(4); }
       &:not(:last-of-type) {@include trailer(2) }
-      li:not(:last-of-type) {@include trailer(2); }
+      li {@include trailer(2); }
     }
     li {@include leader(); }
   }
@@ -160,6 +161,32 @@
       }
     }
   }
+  #control-group .demo {
+    form:first-of-type {
+      @include control-group($replace-labels-with-placeholder: true)
+    }
+    form:nth-of-type(2) {
+      @include control-group($control-group-size: 'small')
+    }
+    form:nth-of-type(3) {
+      @include control-group($horizontal-labels: true)
+    }
+    form:nth-of-type(4) {
+      @include control-group($block-help: true)
+    }
+  }
+  #control-group-sizes .demo {
+    form:first-of-type {
+      @include control-group($control-group-size: 'small')
+    }
+    form:nth-of-type(2) {
+      @include control-group($control-group-size: 'medium')
+    }
+    form:nth-of-type(3) {
+      @include control-group($control-group-size: 'large')
+    }
+  }
+  section#forms form { @include control-group($control-group-size: 'medium')}
   .utilities #panel .demo p {
     display: inline-block;
     @include panel($bgc: lighten($c-blue, 50%), $lines-vertical-padding: 2);
@@ -178,6 +205,10 @@
       @include trailer($font-size: 16px, $lines: 4)
     }
   }
+  .utilities #standard-link a,
+  .utilities #link-style a {@include adjust-font-size-to($fs-p); }
+  .utilities #standard-link a {@extend .standard-link; }
+  .utilities #link-style a {@include link-style($c-gray, $c-red); }
   .utilities #bulleted-list ul,
   .utilities #bulleted-list-placeholder .demo ul {@include bulleted-list; }
   .utilities #circled-ol ol,

@@ -69,10 +69,12 @@ a img {
   font-style: normal; }
 
 .ss-icon, .bulleted-list li:before, #styleguide #styleguide_notes ul li:before, .side-tabs li.active:before, #styleguide .tabs li.active:before, .zippy.opened .title:before, .zippy.closed .title:before, #styleguide .utilities .internals ul li:before, #styleguide .utilities #symbol-set .button:before, #styleguide .utilities #symbol-set
-button:before, #styleguide .utilities #circled-symbol #alert:before, #styleguide .utilities #bulleted-list ul li:before,
+button:before, #styleguide .utilities #symbol-set
+input[type="submit"]:before, #styleguide .utilities #circled-symbol #alert:before, #styleguide .utilities #bulleted-list ul li:before,
 #styleguide .utilities #bulleted-list-placeholder .demo ul li:before, .collection-container .collection-heading #grade-chooser:before,
 .collection-container .collection-heading #subject-chooser:before, .collection-container .showcase .sidetabs li.selected:before, .collection-container .tools li.mastery_quiz:before, .collection-container .tools li.diagnostic_quiz:before, .collection-container .tools li.practice_problems:before, .collection-container .tools li.example_work:before, .collection-container .tools li.performance_task:before, .collection-container .tools li.expert_commentary:before, .ss-icon.ss-standard, .bulleted-list li.ss-standard:before, #styleguide #styleguide_notes ul li.ss-standard:before, .side-tabs li.ss-standard.active:before, #styleguide .tabs li.ss-standard.active:before, .zippy.opened .ss-standard.title:before, .zippy.closed .ss-standard.title:before, #styleguide .utilities .internals ul li.ss-standard:before, #styleguide .utilities #symbol-set .ss-standard.button:before, #styleguide .utilities #symbol-set
-button.ss-standard:before, #styleguide .utilities #circled-symbol .ss-standard#alert:before, #styleguide .utilities #bulleted-list ul li.ss-standard:before,
+button.ss-standard:before, #styleguide .utilities #symbol-set
+input.ss-standard[type="submit"]:before, #styleguide .utilities #circled-symbol .ss-standard#alert:before, #styleguide .utilities #bulleted-list ul li.ss-standard:before,
 #styleguide .utilities #bulleted-list-placeholder .demo ul li.ss-standard:before, .collection-container .collection-heading .ss-standard#grade-chooser:before,
 .collection-container .collection-heading .ss-standard#subject-chooser:before, .collection-container .showcase .sidetabs li.ss-standard.selected:before, .collection-container .tools li.ss-standard.mastery_quiz:before, .collection-container .tools li.ss-standard.diagnostic_quiz:before, .collection-container .tools li.ss-standard.practice_problems:before, .collection-container .tools li.ss-standard.example_work:before, .collection-container .tools li.ss-standard.performance_task:before, .collection-container .tools li.ss-standard.expert_commentary:before,
 [class^="ss-"]:before, [class*=" ss-"]:before,
@@ -194,8 +196,10 @@ button.ss-standard:before, #styleguide .utilities #circled-symbol .ss-standard#a
   content: ''; }
 
 .ss-phone:before, #styleguide .utilities #symbol-set .button:before, #styleguide .utilities #symbol-set
-button:before, .ss-phone.right:after, #styleguide .utilities #symbol-set .right.button:after, #styleguide .utilities #symbol-set
-button.right:after {
+button:before, #styleguide .utilities #symbol-set
+input[type="submit"]:before, .ss-phone.right:after, #styleguide .utilities #symbol-set .right.button:after, #styleguide .utilities #symbol-set
+button.right:after, #styleguide .utilities #symbol-set
+input.right[type="submit"]:after {
   content: '📞'; }
 
 .ss-phonedisabled:before, .ss-phonedisabled.right:after {
@@ -605,20 +609,21 @@ button.right:after {
   font-weight: 300; }
 
 .medium-text, .button,
-button, #styleguide section > h1, #styleguide h2.label, #styleguide .notes a, #styleguide #styleguide_notes h3.label, #styleguide .elements #font-family .demo p:nth-of-type(2), #styleguide .elements #font-family .demo p:nth-of-type(5), #styleguide .utilities #medium-text p {
+button,
+input[type="submit"], #styleguide section > h1, #styleguide h2.label, #styleguide .notes a, #styleguide #styleguide_notes h3.label, #styleguide .elements #font-family .demo p:nth-of-type(2), #styleguide .elements #font-family .demo p:nth-of-type(5), #styleguide .utilities #medium-text p {
   font-weight: 400; }
 
 .heavy-text, #styleguide .elements #font-family .demo p:nth-of-type(3), #styleguide .utilities #heavy-text p {
   font-weight: 600; }
 
-.standard-link, #styleguide .notes a {
+.standard-link, #styleguide .notes a, #styleguide .utilities #standard-link a {
   -webkit-transition: color 250ms;
   -moz-transition: color 250ms;
   -ms-transition: color 250ms;
   -o-transition: color 250ms;
   transition: color 250ms;
   color: #0093d0; }
-  .standard-link:hover, #styleguide .notes a:hover {
+  .standard-link:hover, #styleguide .notes a:hover, #styleguide .utilities #standard-link a:hover {
     cursor: pointer;
     color: #1e5065; }
 
@@ -686,7 +691,8 @@ button, #styleguide section > h1, #styleguide h2.label, #styleguide .notes a, #s
     font-size: 0.35em; }
 
 .button,
-button {
+button,
+input[type="submit"] {
   -webkit-transition: all 250ms;
   -moz-transition: all 250ms;
   -ms-transition: all 250ms;
@@ -699,8 +705,31 @@ button {
   padding-bottom: 0;
   margin: 0; }
   .button:hover,
-  button:hover {
+  button:hover,
+  input[type="submit"]:hover {
     cursor: pointer; }
+
+.input, textarea, input[type="text"], input[type="password"], input[type="datetime"], input[type="datetime-local"],
+input[type="date"], input[type="month"], input[type="time"], input[type="week"], input[type="number"],
+input[type="email"], input[type="url"], input[type="search"], input[type="tel"], input[type="color"] {
+  -webkit-transition: all 250ms;
+  -moz-transition: all 250ms;
+  -ms-transition: all 250ms;
+  -o-transition: all 250ms;
+  transition: all 250ms;
+  margin: 0;
+  background-color: ivory;
+  color: #6d6c6c;
+  border: solid 1px #d4d4d4; }
+  .input:focus, textarea:focus, input[type="text"]:focus, input[type="password"]:focus, input[type="datetime"]:focus, input[type="datetime-local"]:focus,
+  input[type="date"]:focus, input[type="month"]:focus, input[type="time"]:focus, input[type="week"]:focus, input[type="number"]:focus,
+  input[type="email"]:focus, input[type="url"]:focus, input[type="search"]:focus, input[type="tel"]:focus, input[type="color"]:focus {
+    border-color: rgba(0, 147, 208, 0.8);
+    outline: 0; }
+    .input:focus:required:invalid, textarea:focus:required:invalid, input[type="text"]:focus:required:invalid, input[type="password"]:focus:required:invalid, input[type="datetime"]:focus:required:invalid, input[type="datetime-local"]:focus:required:invalid,
+    input[type="date"]:focus:required:invalid, input[type="month"]:focus:required:invalid, input[type="time"]:focus:required:invalid, input[type="week"]:focus:required:invalid, input[type="number"]:focus:required:invalid,
+    input[type="email"]:focus:required:invalid, input[type="url"]:focus:required:invalid, input[type="search"]:focus:required:invalid, input[type="tel"]:focus:required:invalid, input[type="color"]:focus:required:invalid {
+      border-color: rgba(255, 0, 0, 0.8); }
 
 html {
   font-size: 81.25%;
@@ -739,6 +768,9 @@ h5 {
 p {
   font-size: 1.385em;
   line-height: 1.389em; }
+
+label {
+  display: inline-block; }
 
 a {
   text-decoration: none; }
@@ -837,14 +869,17 @@ nav {
   opacity: 0; }
 
 .disabled.button,
-button.disabled, .disabled button {
+button.disabled,
+input.disabled[type="submit"], .disabled button, .disabled input[type="submit"] {
   color: white;
   background-color: #d4d4d4; }
   .disabled.button:hover,
-  button.disabled:hover, .disabled button:hover {
+  button.disabled:hover,
+  input.disabled[type="submit"]:hover, .disabled button:hover, .disabled input[type="submit"]:hover {
     background-color: #d4d4d4; }
   .disabled.button:hover,
-  button.disabled:hover, .disabled button:hover {
+  button.disabled:hover,
+  input.disabled[type="submit"]:hover, .disabled button:hover, .disabled input[type="submit"]:hover {
     cursor: default; }
 
 /**
@@ -854,6 +889,49 @@ button.disabled, .disabled button {
  * so i think this world makes sense if there's going to be classes that come with button setup styles and a certain button size, for example, but in different situations need to have different button colors
  * another reason this makes sense: there's not a lot of cases of turning things into buttons, most of the time we're configuring things that have already been identified as buttons
  */
+abbr {
+  border: none;
+  color: red;
+  margin-right: .25em; }
+
+.control-group.error input {
+  border-color: red; }
+.control-group.error .help {
+  color: red; }
+
+input[type="checkbox"],
+input[type="radio"] {
+  margin-right: .65em;
+  margin-top: .35em;
+  margin-bottom: 0;
+  margin-left: 0;
+  float: left; }
+
+.cancel.button,
+button.cancel,
+input.cancel[type="submit"] {
+  font-size: 1.231em;
+  line-height: 2.813em;
+  padding-left: 1.563em;
+  padding-right: 1.563em;
+  color: white;
+  background-color: #b9b9b9;
+  margin-right: .35em; }
+  .cancel.button:hover,
+  button.cancel:hover,
+  input.cancel[type="submit"]:hover {
+    background-color: #d3d2d2; }
+
+[type="submit"] {
+  color: white;
+  background-color: #6eb43f;
+  font-size: 1.231em;
+  line-height: 2.813em;
+  padding-left: 1.563em;
+  padding-right: 1.563em; }
+  [type="submit"]:hover {
+    background-color: #89c75f; }
+
 #flash {
   margin-bottom: 1.111em;
   font-size: 1.385em;
@@ -875,6 +953,8 @@ button.disabled, .disabled button {
   font-size: 3.846em;
   line-height: 1.1em;
   margin-bottom: 0.8em; }
+  #styleguide section > h1 + .notes {
+    margin-bottom: 2.308em; }
 #styleguide .code code {
   font-size: 1.385em;
   line-height: 1.389em; }
@@ -942,7 +1022,7 @@ button.disabled, .disabled button {
     margin-top: 1.538em; }
   #styleguide .utilities .internals ul:not(:last-of-type) {
     margin-bottom: 0.769em; }
-  #styleguide .utilities .internals ul li:not(:last-of-type) {
+  #styleguide .utilities .internals ul li {
     margin-bottom: 0.769em; }
   #styleguide .utilities .internals li {
     margin-top: 0.385em; }
@@ -1034,7 +1114,9 @@ button.disabled, .disabled button {
   margin-bottom: 0.278em; }
 #styleguide .elements #symbol-set .ss-icon, #styleguide .elements #symbol-set .bulleted-list li:before, .bulleted-list #styleguide .elements #symbol-set li:before, #styleguide .elements #symbol-set #styleguide_notes ul li:before, #styleguide #styleguide_notes ul .elements #symbol-set li:before, #styleguide .elements #symbol-set .side-tabs li.active:before, .side-tabs #styleguide .elements #symbol-set li.active:before, #styleguide .elements #symbol-set .tabs li.active:before, #styleguide .tabs .elements #symbol-set li.active:before, #styleguide .elements #symbol-set .zippy.opened .title:before, .zippy.opened #styleguide .elements #symbol-set .title:before, #styleguide .elements #symbol-set .zippy.closed .title:before, .zippy.closed #styleguide .elements #symbol-set .title:before, #styleguide .elements #symbol-set .utilities .internals ul li:before, #styleguide .utilities .internals ul .elements #symbol-set li:before, #styleguide .elements .utilities #symbol-set .button:before, #styleguide .utilities .elements #symbol-set .button:before, #styleguide .elements #symbol-set .utilities #symbol-set
 button:before, #styleguide .utilities .elements #symbol-set #symbol-set
-button:before, #styleguide .elements #symbol-set .utilities #circled-symbol #alert:before, #styleguide .utilities #circled-symbol .elements #symbol-set #alert:before, #styleguide .elements #symbol-set .utilities #bulleted-list ul li:before, #styleguide .utilities #bulleted-list ul .elements #symbol-set li:before,
+button:before, #styleguide .elements #symbol-set .utilities #symbol-set
+input[type="submit"]:before, #styleguide .utilities .elements #symbol-set #symbol-set
+input[type="submit"]:before, #styleguide .elements #symbol-set .utilities #circled-symbol #alert:before, #styleguide .utilities #circled-symbol .elements #symbol-set #alert:before, #styleguide .elements #symbol-set .utilities #bulleted-list ul li:before, #styleguide .utilities #bulleted-list ul .elements #symbol-set li:before,
 #styleguide .elements #symbol-set .utilities #bulleted-list-placeholder .demo ul li:before,
 #styleguide .utilities #bulleted-list-placeholder .demo ul .elements #symbol-set li:before, #styleguide .elements #symbol-set .collection-container .collection-heading #grade-chooser:before, .collection-container .collection-heading #styleguide .elements #symbol-set #grade-chooser:before,
 #styleguide .elements #symbol-set .collection-container .collection-heading #subject-chooser:before,
@@ -1059,7 +1141,8 @@ button:before, #styleguide .elements #symbol-set .utilities #circled-symbol butt
   .collection-container .collection-heading #styleguide .elements #symbol-set button#subject-chooser:hover:before {
     background-color: #89c75f; }
 #styleguide .utilities #symbol-set .button, #styleguide .utilities #symbol-set
-button {
+button, #styleguide .utilities #symbol-set
+input[type="submit"] {
   color: white;
   background-color: #6eb43f;
   font-size: 1.231em;
@@ -1067,14 +1150,17 @@ button {
   padding-left: 1.563em;
   padding-right: 1.563em; }
   #styleguide .utilities #symbol-set .button:hover, #styleguide .utilities #symbol-set
-  button:hover {
+  button:hover, #styleguide .utilities #symbol-set
+  input[type="submit"]:hover {
     background-color: #89c75f; }
   #styleguide .utilities #symbol-set .button:before, #styleguide .utilities #symbol-set
-  button:before {
+  button:before, #styleguide .utilities #symbol-set
+  input[type="submit"]:before {
     color: "inherit";
     font-size: "inherit"; }
   #styleguide .utilities #symbol-set .button:before, #styleguide .utilities #symbol-set
-  button:before {
+  button:before, #styleguide .utilities #symbol-set
+  input[type="submit"]:before {
     margin-right: .5em; }
 #styleguide .utilities #circled-symbol #alert {
   font-size: 1.692em;
@@ -1094,6 +1180,117 @@ button {
     margin-right: .6em;
     margin-top: -5px;
     vertical-align: middle; }
+html.placeholder #styleguide #control-group .demo form:first-of-type .control-group.string label.control-label {
+  display: none; }
+#styleguide #control-group .demo form:nth-of-type(2) .control-group {
+  margin-bottom: 0.769em; }
+#styleguide #control-group .demo form:nth-of-type(2) input.string {
+  font-size: 0.923em;
+  line-height: 1.667em;
+  padding-left: 0.417em;
+  padding-right: 0.417em;
+  padding-top: 0.417em;
+  padding-bottom: 0.417em;
+  margin-bottom: 0.833em;
+  width: 12.5em; }
+#styleguide #control-group .demo form:nth-of-type(2) .control-group.string label.control-label {
+  margin-bottom: 0.417em; }
+#styleguide #control-group .demo form:nth-of-type(2) label.control-label,
+#styleguide #control-group .demo form:nth-of-type(2) .help {
+  font-size: 0.923em;
+  line-height: 1.667em; }
+#styleguide #control-group .demo form:nth-of-type(2) .help {
+  margin-left: 0.417em; }
+#styleguide #control-group .demo form:nth-of-type(3) .control-group.string {
+  *zoom: 1; }
+  #styleguide #control-group .demo form:nth-of-type(3) .control-group.string:before, #styleguide #control-group .demo form:nth-of-type(3) .control-group.string:after {
+    display: table;
+    content: ""; }
+  #styleguide #control-group .demo form:nth-of-type(3) .control-group.string:after {
+    clear: both; }
+  #styleguide #control-group .demo form:nth-of-type(3) .control-group.string .control-label,
+  #styleguide #control-group .demo form:nth-of-type(3) .control-group.string .controls {
+    display: inline-block; }
+  #styleguide #control-group .demo form:nth-of-type(3) .control-group.string .control-label {
+    display: inline-block;
+    text-align: right;
+    width: 5em;
+    padding-right: 1em; }
+#styleguide #control-group .demo form:nth-of-type(4) .help {
+  display: block;
+  margin-left: 0; }
+#styleguide #control-group-sizes .demo form:first-of-type .control-group {
+  margin-bottom: 0.769em; }
+#styleguide #control-group-sizes .demo form:first-of-type input.string {
+  font-size: 0.923em;
+  line-height: 1.667em;
+  padding-left: 0.417em;
+  padding-right: 0.417em;
+  padding-top: 0.417em;
+  padding-bottom: 0.417em;
+  margin-bottom: 0.833em;
+  width: 12.5em; }
+#styleguide #control-group-sizes .demo form:first-of-type .control-group.string label.control-label {
+  margin-bottom: 0.417em; }
+#styleguide #control-group-sizes .demo form:first-of-type label.control-label, #styleguide #control-group-sizes .demo form:first-of-type .help {
+  font-size: 0.923em;
+  line-height: 1.667em; }
+#styleguide #control-group-sizes .demo form:first-of-type .help {
+  margin-left: 0.417em; }
+#styleguide #control-group-sizes .demo form:nth-of-type(2) .control-group {
+  margin-bottom: 0.769em; }
+#styleguide #control-group-sizes .demo form:nth-of-type(2) input.string {
+  font-size: 1.231em;
+  line-height: 1.25em;
+  padding-left: 0.625em;
+  padding-right: 0.625em;
+  padding-top: 0.625em;
+  padding-bottom: 0.625em;
+  margin-bottom: 0.625em;
+  width: 12.5em; }
+#styleguide #control-group-sizes .demo form:nth-of-type(2) .control-group.string label.control-label {
+  margin-bottom: 0.625em; }
+#styleguide #control-group-sizes .demo form:nth-of-type(2) label.control-label, #styleguide #control-group-sizes .demo form:nth-of-type(2) .help {
+  font-size: 1.231em;
+  line-height: 1.25em; }
+#styleguide #control-group-sizes .demo form:nth-of-type(2) .help {
+  margin-left: 0.625em; }
+#styleguide #control-group-sizes .demo form:nth-of-type(3) .control-group {
+  margin-bottom: 0.769em; }
+#styleguide #control-group-sizes .demo form:nth-of-type(3) input.string {
+  font-size: 1.538em;
+  line-height: 1.25em;
+  padding-left: 0.75em;
+  padding-right: 0.75em;
+  padding-top: 0.75em;
+  padding-bottom: 0.75em;
+  margin-bottom: 0.5em;
+  width: 12.5em; }
+#styleguide #control-group-sizes .demo form:nth-of-type(3) .control-group.string label.control-label {
+  margin-bottom: 0.5em; }
+#styleguide #control-group-sizes .demo form:nth-of-type(3) label.control-label, #styleguide #control-group-sizes .demo form:nth-of-type(3) .help {
+  font-size: 1.538em;
+  line-height: 1.25em; }
+#styleguide #control-group-sizes .demo form:nth-of-type(3) .help {
+  margin-left: 0.5em; }
+#styleguide section#forms form .control-group {
+  margin-bottom: 0.769em; }
+#styleguide section#forms form input.string {
+  font-size: 1.231em;
+  line-height: 1.25em;
+  padding-left: 0.625em;
+  padding-right: 0.625em;
+  padding-top: 0.625em;
+  padding-bottom: 0.625em;
+  margin-bottom: 0.625em;
+  width: 12.5em; }
+#styleguide section#forms form .control-group.string label.control-label {
+  margin-bottom: 0.625em; }
+#styleguide section#forms form label.control-label, #styleguide section#forms form .help {
+  font-size: 1.231em;
+  line-height: 1.25em; }
+#styleguide section#forms form .help {
+  margin-left: 0.625em; }
 #styleguide .utilities #panel .demo p {
   display: inline-block;
   background-color: #d0f1ff;
@@ -1114,6 +1311,20 @@ button {
   font-size: 1.231em;
   line-height: 1.25em;
   margin-bottom: 1.25em; }
+#styleguide .utilities #standard-link a,
+#styleguide .utilities #link-style a {
+  font-size: 1.385em;
+  line-height: 1.389em; }
+#styleguide .utilities #link-style a {
+  -webkit-transition: color 250ms;
+  -moz-transition: color 250ms;
+  -ms-transition: color 250ms;
+  -o-transition: color 250ms;
+  transition: color 250ms;
+  color: #a09f9f; }
+  #styleguide .utilities #link-style a:hover {
+    cursor: pointer;
+    color: red; }
 #styleguide .utilities #bulleted-list ul li,
 #styleguide .utilities #bulleted-list-placeholder .demo ul li {
   position: relative;
@@ -1156,6 +1367,8 @@ button {
 #styleguide .elements #buttons .button,
 #styleguide .elements #buttons
 button,
+#styleguide .elements #buttons
+input[type="submit"],
 #styleguide .utilities #button-colors button,
 #styleguide .utilities #button-sizes button,
 #styleguide .utilities #button-mixin button {
@@ -1163,7 +1376,9 @@ button,
 #styleguide .elements #buttons button,
 #styleguide .elements #buttons .button,
 #styleguide .elements #buttons
-button {
+button,
+#styleguide .elements #buttons
+input[type="submit"] {
   color: white;
   background-color: #6eb43f;
   font-size: 1.231em;
@@ -1173,7 +1388,9 @@ button {
   #styleguide .elements #buttons button:hover,
   #styleguide .elements #buttons .button:hover,
   #styleguide .elements #buttons
-  button:hover {
+  button:hover,
+  #styleguide .elements #buttons
+  input[type="submit"]:hover {
     background-color: #89c75f; }
 #styleguide .elements #disabled-buttons button {
   font-size: 1.231em;

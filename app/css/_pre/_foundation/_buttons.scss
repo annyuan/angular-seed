@@ -1,8 +1,11 @@
 .button,
-button { @extend .button; }
+button,
+input[type="submit"] { @extend .button; }
 
 .disabled {
-  &.button, &button {
+  &.button, 
+  &button,
+  &input[type="submit"] {
     @include button($c: white, $bgc: $c-light-gray, $bgc-hover: $c-light-gray);
     &:hover { cursor: default }
   }

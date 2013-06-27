@@ -1,0 +1,34 @@
+abbr {
+  border: none;
+  color: $c-red;
+  margin-right: .25em;
+}
+
+.control-group.error {
+  input { border-color: $c-red }
+  .help { color: $c-red }
+}
+
+textarea, input[type="text"], input[type="password"], input[type="datetime"], input[type="datetime-local"],
+input[type="date"], input[type="month"], input[type="time"], input[type="week"], input[type="number"],
+input[type="email"], input[type="url"], input[type="search"], input[type="tel"], input[type="color"] {
+  @extend .input;
+}
+
+input[type="checkbox"],
+input[type="radio"] {
+  margin-right: .65em;
+  margin-top: .35em;
+  margin-bottom: 0; //reset 
+  margin-left: 0; //reset 
+  float: left;
+}
+
+.button.cancel {
+  @include button($button-size: 'medium', $c: white, $bgc: lighten($c-gray, 10%), $bgc-hover: lighten($c-gray, 20%));
+  margin-right: .35em;
+}
+
+[type="submit"] {
+  @include button($button-size: 'medium', $button-color: 'green')
+}

@@ -1,0 +1,75 @@
+.input {
+  @include transition(all $speed-transition);
+  margin: 0; //reset - maybe these should all go into a folder
+  background-color: ivory;
+  color: darken($c-gray, 20%);
+  border: solid 1px $c-light-gray;
+  &:focus {
+    border-color: rgba($c-blue,.8);
+    outline: 0;
+    &:required:invalid {border-color: rgba($c-red, .8); }
+  }
+}
+
+$control-group-sizes: 'small', 'medium', 'large';
+
+@function control-group-sizes($control-group-size) {
+  @if ($control-group-size == 'small') { @return 12px, 1, 1, 30; }
+  @if ($control-group-size == 'medium') { @return 16px, 2, 2, 40; }
+  @if ($control-group-size =='large') { @return 20px, 3, 2, 50; }
+}
+
+@mixin control-group(
+  $replace-labels-with-placeholder: false,
+  $control-group-size: false,
+  $block-help: false,
+  $horizontal-labels: false,
+  $horizontal-label-width: 5em) {
+  @if $replace-labels-with-placeholder {
+    html.placeholder & .control-group.string label.control-label { display: none }
+  }
+  @if $control-group-size {
+    $font-size: nth(control-group-sizes($control-group-size), 1);
+    $lines: nth(control-group-sizes($control-group-size), 2);
+    .control-group {
+      @include trailer(2);
+    }
+    input.string {
+      @include adjust-font-size-to($font-size);
+      padding-left: rhythm($font-size: $font-size, $lines);
+      padding-right: rhythm($font-size: $font-size, $lines);
+      @include padding-leader($font-size: $font-size, $lines);
+      @include padding-trailer($font-size: $font-size, $lines);
+      @include trailer($font-size: $font-size, $lines: 2);
+      width: rhythm($font-size: $font-size, $lines: nth(control-group-sizes($control-group-size), 4))
+    }
+    .control-group.string label.control-label { @include trailer($font-size: $font-size, $lines: nth(control-group-sizes($control-group-size), 3)) }
+    label.control-label,
+    .help { @include adjust-font-size-to($font-size) }
+    @if $block-help == false {
+      .help { margin-left: rhythm($font-size: $font-size, $lines: nth(control-group-sizes($control-group-size), 3)) }
+    }
+  }
+  @if $block-help {
+    .help { 
+      display: block;
+      margin-left: 0;
+    }
+  }
+  @if $horizontal-labels {
+    .control-group.string { 
+      @include clearfix;
+      .control-label,
+      .controls { display: inline-block }
+      .control-label {
+        display: inline-block;
+        text-align: right;
+        width: $horizontal-label-width;
+        padding-right: 1em;
+      }
+      @if $block-help {
+        .control-label { vertical-align: top }
+      }
+    }
+  }
+}

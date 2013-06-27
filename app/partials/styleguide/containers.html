@@ -2,7 +2,7 @@
   <h1>Containers</h1>
   <ul class="utilities">
     <li id="panel">
-      <h2 class="label">+panel(...)</h2>
+      <h2 class="label">=panel</h2>
       <div class="internals">
         <p>Wraps stuff in a colored background.</p>
         <ul>
@@ -10,7 +10,7 @@
           <li><code>$bgc: false</code><p>The background color of the panel.</p></li>
           <li><code>$lines-vertical-padding: false</code><p>(integer) The vertical padding of the panel in terms of multiples of <code>$base-line-height</code>.</p></li>
           <li><code>$lines-horizontal-padding: false</code><p>(integer) The horizontal padding of the panel in terms of multiples of <code>$base-line-height</code>.</p></li>
-          <li><code>$font-size: $base-font-size</code><p>The font size is used to generate padding values in <code>em</code>'s.</p></li>
+          <li><code>$font-size: $base-font-size</code><p>The font size is used to generate padding values in <code>em</code>'s that respect vertical rhythm.</p></li>
         </ul>
       </div>
       <div class="demo">
@@ -19,9 +19,6 @@
       <div class="code">
         <pre>
           <code>
-%p
-  I am sitting in a blue panel.
-
 p
   +panel($bgc: lighten($c-blue, 50%), $lines-vertical-padding: 2)
           </code>
@@ -39,8 +36,6 @@ p
       <div class="code">
         <pre>
           <code>
-%p I have a bottom border but vertical rhythm on this page is maintained.
-
 p
   border-bottom-color: $c-blue
   +trailing-border($font-size: $fs-p, $width: 4px, $lines: 4)

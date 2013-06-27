@@ -35,6 +35,10 @@ p {
   @include adjust-font-size-to($fs-p);
 }
 
+label {
+  display: inline-block;
+}
+
 a {
   text-decoration: none;
 }

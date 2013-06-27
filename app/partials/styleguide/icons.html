@@ -18,11 +18,9 @@
       <div class="code">
         <pre>
           <code>
-.ss-icon
-  mail
+.ss-icon mail
 
-%button.ss-icon{:href => "mailto:abc@example.com"}
-  mail
+%button.ss-icon{:href => "mailto:abc@example.com"} mail
           </code>
         </pre>
       </div>
@@ -51,8 +49,6 @@
       <div class="code">
         <pre>
           <code>
-%a.button{:href => "#"} Call home
-          </code><code>
 .button
   +symbol('phone')
           </code>
@@ -75,8 +71,6 @@
       <div class="code">
         <pre>
           <code>
-%div#alert Alert
-
 #alert
   +symbol('alert', $color: white, $size: .65em)
   &:before
