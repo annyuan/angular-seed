@@ -7,12 +7,8 @@
     @extend .medium-text, .callout-text;
   }
   .code {
-    code {
-      @include adjust-font-size-to(18px);
-    }
-    pre {
-      margin-top: -(emCalc(20px))
-    }
+    code {@include adjust-font-size-to(18px); }
+    pre {margin-top: -(emCalc(20px)) }
   }
   h2.label {
     $fs-h2: 35px;
@@ -48,26 +44,16 @@
   }
   .utilities .internals {
     @include trailer(5);
-    @include panel-background($c-smoke);
-    @include panel-padding(3, 4);
-    > p {
-      @include trailer($font-size: $fs-p, $lines: 3);
-    }
+    @include panel($bgc: $c-smoke, $lines-vertical-padding: 3, $lines-horizontal-padding: 4);
+    > p {@include trailer($font-size: $fs-p, $lines: 3); }
     .label {
       @include adjust-font-size-to($fs-p);
       @include trailer($font-size: $fs-p, $lines: 2.5);
     }
-    code {
-      @include adjust-font-size-to($fs-p);
-    }
-    p code {
-      @include adjust-font-size-to($fs-p, $from-size: $fs-p);
-    }
+    code {@include adjust-font-size-to($fs-p); }
+    p code {@include adjust-font-size-to($fs-p, $from-size: $fs-p); }
     ul {
-      @extend .bulleted;
-      @include bulleted-positioning(1.5em, .3em, .1em);
-      @include bulleted-size(7px);
-      @include bulleted-color(darken($c-light-gray, 8%));
+      @include bulleted-list($font-size: 8px, $top: .25em, $left: .2em);
       &:not(:first-of-type) {@include leader(4); }
       &:not(:last-of-type) {@include trailer(2) }
       li:not(:last-of-type) {@include trailer(2); }
@@ -82,13 +68,9 @@
     float: right;
     @include switcher-size(15px, 6, 2);
     @include switcher-color($c-light-gray, $c-gray, white);
-    li:not(:first-of-type) {
-      @include fix-inline-block(-3px);
-    }
+    li:not(:first-of-type) {@include fix-inline-block(-3px); }
   }
-  .tabbable {
-    @include padding-leader(10);
-  }
+  .tabbable {@include padding-leader(10); }
   .tabs, 
   .tab-content {
     display: inline-block;
@@ -116,39 +98,23 @@
     @include trailer(10);
     h1 {@extend .callout-text; }
     h3.label { @extend .medium-text; }
-    ul {
-      @extend .bulleted;
-      @include bulleted-positioning(emCalc(30px, $fs-p), .1em, .5em);
-      @include bulleted-size(.1em);
-      @include bulleted-color(darken($c-light-gray, 5%));
-    }
+    ul {@extend .bulleted-list; }
     li {
       @include adjust-font-size-to($fs-p);
       @include trailer($font-size: $fs-p, $lines: 2);
     }
     li,
     p { @extend .light-text; }
-    h2.label {
-      @include leader($font-size: $fs-h2, $lines: 8);
-    }
-    h3.label {
-      @include leader($font-size: $fs-h3, $lines: 5);
-    }
+    h2.label {@include leader($font-size: $fs-h2, $lines: 8); }
+    h3.label {@include leader($font-size: $fs-h3, $lines: 5); }
   }
   #styleguide_notes p,
-  .notes p {
-    @include trailer($font-size: $fs-p, $lines: 2);
-  }
+  .notes p {@include trailer($font-size: $fs-p, $lines: 2); }
   .nav-tabs {
-    li {
-      @include adjust-font-size-to(24px, 10);
-    }
+    li {@include adjust-font-size-to(24px, 10); }
   }
   .elements #a-tags .demo a,
-  .elements #lists .demo li
-   {
-      @include adjust-font-size-to(18px);
-  }
+  .elements #lists .demo li {@include adjust-font-size-to(18px); }
   .elements #font-family .demo {
     p { @include trailer($font-size: $fs-p) }
     p:nth-of-type(1) { @extend .light-text }
@@ -170,19 +136,16 @@
     }
     button.ss-icon {
       margin-left: 1em;
-      @extend .button-green;
+      @include button($button-color: 'green');
       padding: .5em .5em .25em .5em;
       border-radius: 5px;
     }
   }
   .utilities #symbol-set {
     .button {
-      @extend .button-green;
-      @extend .button-medium;
+      @include button($button-size: 'medium', $button-color: 'green');
       @include symbol('phone');
-      &:before {
-        margin-right: .5em;
-      }
+      &:before {margin-right: .5em; }
     }
   }
   .utilities #circled-symbol {
@@ -192,49 +155,65 @@
       &:before {
         @include circled-symbol(6, $c-red);
         margin-right: .6em;
-        vertical-align: middle;
         margin-top: -5px;
+        vertical-align: middle;
       }
     }
   }
-  .utilities #circled-ol ol,
-  .utilities #circled-ol-placeholder ol { 
-    @include circled-ol();
+  .utilities #panel .demo p {
+    display: inline-block;
+    @include panel($bgc: lighten($c-blue, 50%), $lines-vertical-padding: 2);
+  }
+  .utilities #dividers .demo p {
+    display: inline-block;
+    border-bottom-color: $c-blue;
+    @include trailing-border($font-size: $fs-p, $width: 4px, $lines: 4);
+  }
+  .utilities #bulleted-list .demo ul,
+  .utilities #circled-ol .demo ol,
+  .utilities #circled-ol-placeholder .demo ol,
+  .utilities #bulleted-list-placeholder .demo ul {
     li {
       @include adjust-font-size-to(16px);
       @include trailer($font-size: 16px, $lines: 4)
     }
   }
+  .utilities #bulleted-list ul,
+  .utilities #bulleted-list-placeholder .demo ul {@include bulleted-list; }
+  .utilities #circled-ol ol,
+  .utilities #circled-ol-placeholder ol {@include circled-ol(); }
   .utilities #emphasized p { @extend .emphasized }
   .utilities #subdued-text p { @extend .subdued-text }
   .utilities #bright-text p { @extend .bright-text }
   .utilities #callout-text p { @extend .callout-text }
   .utilities #light-text p { @extend .light-text }
   .utilities #medium-text p { @extend .medium-text }
-  .utilities #heavy-text p { @extend .heavy-text }
+  .utilities #heavy-text p { @extend .heavy-text; }
   .elements #buttons button,
   .elements #buttons .button,
-  .utilities #button-green button,
-  .utilities #button-medium button {
-    @extend .button-green;
-    @extend .button-medium;
-    margin-right: .5em;
-  }
-  .elements #disabled-buttons button {
-    @extend .button-medium;
-  }
+  .utilities #button-colors button,
+  .utilities #button-sizes button,
+  .utilities #button-mixin button {margin-right: .5em; }
+  .elements #buttons button,
+  .elements #buttons .button {@include button($button-size: 'medium', $button-color: 'green') }
+  .elements #disabled-buttons button {@include button($button-size: 'medium') }
   .utilities #button-colors button {
-    @extend .button-medium;
-    @include button-colors(white, $c-orange, lighten($c-orange, 10%));
+    @include button($button-size: 'medium');
+    &:first-of-type {@include button($button-color: 'green') }
+    &:last-of-type {@include button($button-color: 'orange') }
   }
   .utilities #button-sizes button {
-    @extend .button-green;
-    @include button-sizes(20px, 12, 7);
+    @include button($button-color: 'green');
+    &:first-of-type {@include button($button-size: 'medium') }
+    &:last-of-type {@include button($button-size: 'jumbo') }
+  }
+  .utilities #button-mixin button {
+    &:first-of-type {@include button($button-color: 'green', $button-size: 'medium') }
+    &:nth-of-type(2) {@include button($button-size: 'medium', $c: white, $bgc: $c-red, $bgc-hover: lighten($c-red, 10%)) }
+    &:nth-of-type(3) {@include button($button-color: 'orange', $font-size: 11px, $lines: 7, $lines-horizontal-padding: 3) }
   }
   ul.swatches {
-    h3 {
-      @include trailer($font-size: $fs-h3, $lines: 4);
-    }
+    h3 {@include trailer($font-size: $fs-h3, $lines: 4); }
     > ul {@include trailer(8);}
     li[class^="c-"] {
       margin-right: .5em;

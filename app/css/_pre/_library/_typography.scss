@@ -1,30 +1,16 @@
-.emphasized {
-  font-style: italic;
-}
+.emphasized {font-style: italic; }
 
-.subdued-text {
-  color: $c-subdued-text;
-}
+.subdued-text {color: $c-subdued-text; }
 
-.bright-text {
-  color: $c-bright-text;
-}
+.bright-text {color: $c-bright-text; }
 
-.callout-text {
-  color: $c-callout-text;
-}
+.callout-text {color: $c-callout-text; }
 
-.light-text {
-  font-weight: 300;
-}
+.light-text {font-weight: 300; }
 
-.medium-text {
-  font-weight: 400;
-}
+.medium-text {font-weight: 400; }
 
-.heavy-text {
-  font-weight: 600;
-}
+.heavy-text {font-weight: 600; }
 
 @mixin link-style($color: $c-link-default, $color-hover: $c-link-hover) {
   @include transition(color $speed-transition);
@@ -97,34 +83,25 @@
 }
 
 .circled-ol {
-  @include circled-ol();
+  @include circled-ol;
 }
 
-.bulleted {
+@mixin bulleted-list($padding-left: 1.5em, $top: .15em, $left: .5em, $color: $c-light-gray, $font-size: .35em) {
   li {
     position: relative;
     @include symbol('record');
-    &:before {
-      position: absolute;
-    }
-  }
-}
-
-@mixin bulleted-positioning($padding-left, $top, $left: 0) {
-  li {
     padding-left: $padding-left;
     &:before {
+      position: absolute;
       left: $left;
-      top: $top
+      top: $top;
+      color: $color;
+      font-size: $font-size;
     }
   }
 }
 
-@mixin bulleted-color($color) {
-  li:before {color: $color }
-}
-
-@mixin bulleted-size($size) {
-  li:before {font-size: $size }
+.bulleted-list {
+  @include bulleted-list;
 }
 

@@ -220,7 +220,7 @@ p
       </div>
     </li>
     <li id="circled-ol">
-      <h2 class="label">@mixin circled-ol(...)</h2>
+      <h2 class="label">=circled-ol</h2>
       <div class="internals">
         <p>Gives the ordered list numbers a circular colored background.</p>
         <ul>
@@ -257,9 +257,8 @@ ol
     </li>
     <li id="circled-ol-placeholder">
       <h2 class="label">%circled-ol</h2>
-      <div class="internals">
-        <code>+circled-ol</code>
-      </div>
+      <div class="internals"><pre><code>%circled-ol
+  +circled-ol</code></pre></div>
       <div class="demo">
         <ol>
           <li>First ordered list item</li>
@@ -277,6 +276,65 @@ ol
 
 ol
   @extend %circled-ol
+          </code>
+        </pre>
+      </div>
+    </li>
+    <li id="bulleted-list">
+      <h2 class="label">=bulleted-list</h2>
+      <div class="internals">
+        <p>Places a bullet (a symbol set "record" icon) before each list item.</p>
+        <ul>
+          <div class="label">Optional arguments:</div>
+          <li><code>$padding-left: 1.5em</code><p>The padding on the list item where the bullet will sit.</p></li>
+          <li><code>$top: .15em</code><p>The top position of the bullet.</p></li>
+          <li><code>$left: .5em</code><p>The left position of the bullet.</p></li>
+          <li><code>$font-size: .35em</code><p>The font size of the bullet.</p></li>
+          <li><code>$color: $c-light-gray</code><p>The color of the bullet.</p></li>
+        </ul>
+      </div>
+      <div class="demo">
+        <ul>
+          <li>First bulleted list item.</li>
+          <li>Second bulleted list item.</li>
+          <li>Third bulleted list item.</li>
+        </ul>
+      </div>
+      <div class="code">
+        <pre>
+          <code>
+%ul
+  %li First bulleted list item
+  %li Second bulleted list item
+  %li Third bulleted list item
+
+ul
+  +bulleted-list
+          </code>
+        </pre>
+      </div>
+    </li>
+    <li id="bulleted-list-placeholder">
+      <h2 class="label">%bulleted-list</h2>
+      <div class="internals"><pre><code>%bulleted-list
+  +bulleted-list</code></pre></div>
+      <div class="demo">
+        <ul>
+          <li>First bulleted list item</li>
+          <li>Second bulleted list item</li>
+          <li>Third bulleted list item</li>
+        </ul>
+      </div>
+      <div class="code">
+        <pre>
+          <code>
+%ul
+  %li First bulleted list item
+  %li Second bulleted list item
+  %li Third bulleted list item
+
+ul
+  @extend %bulleted-list
           </code>
         </pre>
       </div>

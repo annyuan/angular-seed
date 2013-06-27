@@ -1,44 +1,59 @@
-/**
- * UTILITIES
- */
-
 .button {
   @include transition(all $speed-transition);
   display: inline-block;
-  border-radius: 40px;
+  border-radius: 100px;
   border: none; //reset
   padding-top: 0; //reset
   padding-bottom: 0; //reset
   margin: 0; //reset
   @extend .medium-text;
-  &:hover {
-    cursor: pointer;
+  &:hover {cursor: pointer; }
+}
+
+$button-colors: 'green', 'orange';
+
+@function button-colors($button-color) {
+  @if ($button-color == 'green') {@return white, $c-green, lighten($c-green, 10%); }
+  @if ($button-color == 'orange') {@return white, $c-orange, lighten($c-orange, 10%); }
+} 
+
+$button-sizes: 'medium', 'jumbo';
+
+@function button-sizes($button-size) {
+  @if ($button-size == 'medium') {@return 16px, 9, 5; }
+  @if ($button-size == 'jumbo') {@return 20px, 12, 7; }
+}
+
+@mixin button(
+  $button-color: false, 
+  $button-size: false, 
+  $c: false, 
+  $c-hover: false, 
+  $bgc: false, 
+  $bgc-hover: false, 
+  $font-size: false, 
+  $lines: false, 
+  $lines-horizontal-padding: false) {
+  @if $button-color {
+    color: nth(button-colors($button-color), 1);
+    background-color: nth(button-colors($button-color), 2);
+    &:hover {
+      background-color: nth(button-colors($button-color), 3)
+    }
   }
-}
-
-@mixin button-colors($c, $bgc, $bgc-hover, $c-hover: $c) {
-  color: $c;
-  background-color: $bgc;
-  &:hover {
-    color: $c-hover;
-    background-color: $bgc-hover;
+  @if $button-size {
+    @include adjust-font-size-to(nth(button-sizes($button-size), 1), $lines: nth(button-sizes($button-size), 2));
+    padding-left: rhythm($font-size: nth(button-sizes($button-size), 1), $lines: nth(button-sizes($button-size), 3));
+    padding-right: rhythm($font-size: nth(button-sizes($button-size), 1), $lines: nth(button-sizes($button-size), 3));
   }
-}
-
-@mixin button-sizes($font-size, $line-height, $lines-horizontal-padding) {
-  @include adjust-font-size-to($font-size, $line-height);
-  padding-left: rhythm($font-size: $font-size, $lines: $lines-horizontal-padding);
-  padding-right: rhythm($font-size: $font-size, $lines: $lines-horizontal-padding);
-}
-
-/**
- * STANDARD SETTINGS
- */
-
-.button-green {
-  @include button-colors(white, $c-green, lighten($c-green, 10%))
-}
-
-.button-medium {
-  @include button-sizes(16px, 9, 5);
+  @if $c {color: $c; }
+  @if $bgc {background-color: $bgc; }
+  @if $c-hover { &:hover {color: $c-hover} }
+  @if $bgc-hover { &:hover {background-color: $bgc-hover} }
+  @if $font-size { font-size: $font-size/$base-font-size }
+  @if $lines { line-height: rhythm($font-size: $font-size, $lines: $lines)}
+  @if $lines-horizontal-padding {
+    padding-left: rhythm($font-size: $font-size, $lines: $lines-horizontal-padding);
+    padding-right: rhythm($font-size: $font-size, $lines: $lines-horizontal-padding);
+  }
 }

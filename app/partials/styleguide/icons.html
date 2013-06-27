@@ -30,7 +30,7 @@
   </ul>
   <ul class="utilities">
     <li id="symbol-set">
-      <h2 class="label">@mixin symbol(...)</h2>
+      <h2 class="label">=symbol</h2>
       <div class="internals">
         <p>Inserts an icon as generated content on the element.</p>
         <ul>
@@ -54,13 +54,13 @@
 %a.button{:href => "#"} Call home
           </code><code>
 .button
-  @include symbol('phone')
+  +symbol('phone')
           </code>
         </pre>
       </div>
     </li>
     <li id="circled-symbol">
-      <h2 class="label">@mixin circled-symbol(...)</h2>
+      <h2 class="label">=circled-symbol</h2>
       <div class="internals">
         <p>Gives the icon a colored circle background.</p>
         <ul>
@@ -78,9 +78,9 @@
 %div#alert Alert
 
 #alert
-  @include symbol('alert', $color: white, $size: .65em)
+  +symbol('alert', $color: white, $size: .65em)
   &:before
-    @include circled-symbol(6, $c-red)
+    +circled-symbol(6, $c-red)
           </code>
         </pre>
       </div>

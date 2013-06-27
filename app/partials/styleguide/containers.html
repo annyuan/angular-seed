@@ -1,11 +1,52 @@
 <section id="containers">
   <h1>Containers</h1>
-  <ul class="elements">
-    <li id="panels">
-      <h2 class="label">Panels</h2>
+  <ul class="utilities">
+    <li id="panel">
+      <h2 class="label">+panel(...)</h2>
+      <div class="internals">
+        <p>Wraps stuff in a colored background.</p>
+        <ul>
+          <div class="label">Optional arguments:</div>
+          <li><code>$bgc: false</code><p>The background color of the panel.</p></li>
+          <li><code>$lines-vertical-padding: false</code><p>(integer) The vertical padding of the panel in terms of multiples of <code>$base-line-height</code>.</p></li>
+          <li><code>$lines-horizontal-padding: false</code><p>(integer) The horizontal padding of the panel in terms of multiples of <code>$base-line-height</code>.</p></li>
+          <li><code>$font-size: $base-font-size</code><p>The font size is used to generate padding values in <code>em</code>'s.</p></li>
+        </ul>
+      </div>
+      <div class="demo">
+        <p>I am sitting in a blue panel.</p>
+      </div>
+      <div class="code">
+        <pre>
+          <code>
+%p
+  I am sitting in a blue panel.
+
+p
+  +panel($bgc: lighten($c-blue, 50%), $lines-vertical-padding: 2)
+          </code>
+        </pre>
+      </div>
     </li>
     <li id="dividers">
-      <h2 class="label">Dividers</h2>
+      <h2 class="label">vertical rhythm by Compass</h2>
+      <div class="notes">
+        <p>We use the CSS <code>border</code> property to create dividers. Compass provides mixins for creating borders that respect vertical rhythm - they are documented <a href="http://compass-style.org/reference/compass/typography/vertical_rhythm/">here</a>.</p>
+      </div>
+      <div class="demo">
+        <p>I have a bottom border but vertical rhythm on this page is maintained.</p>
+      </div>
+      <div class="code">
+        <pre>
+          <code>
+%p I have a bottom border but vertical rhythm on this page is maintained.
+
+p
+  border-bottom-color: $c-blue
+  +trailing-border($font-size: $fs-p, $width: 4px, $lines: 4)
+          </code>
+        </pre>
+      </div>
     </li>
   </ul>
 </section>

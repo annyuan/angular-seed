@@ -92,12 +92,12 @@
     ]
     $scope.lz_specific = [
       {
-        "title": "Concepts",
-        "content": "partials/styleguide/concepts.html"
+        "title": "Resources",
+        "content": "partials/styleguide/resources.html"
       },
       {
-        "title": "Modules",
-        "content": "partials/styleguide/modules.html"
+        "title": "Attributes",
+        "content": "partials/styleguide/attributes.html"
       }
     ]
   };

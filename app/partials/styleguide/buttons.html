@@ -34,98 +34,99 @@
     </li>
   </ul>
   <ul class="utilities">
-    <li id="button-colors">
-      <h2 class="label">@mixin button-colors(...)</h2>
+    <li id="button-mixin">
+      <h2 class="label">=button</h2>
       <div class="internals">
-        <ul>
-          <div class="label">Required arguments:</div>
-          <li><code>$c</code><p>Text color</p></li>
-          <li><code>$bgc</code><p>Background color</p></li>
-          <li><code>$bgc-hover</code><p>Background color on hover</p></li>
-        </ul>
+        <p>This mixin can be used to configure button colors and sizes. There shouldn't be many cases where in the CSS we have to include this mixin in addition to extending the base button class, since the things that need to look like buttons are typically <code>button</code> tags or items that have the <code>button</code> class on them.</p>
         <ul>
           <div class="label">Optional arguments:</div>
-          <li><code>$c-hover: $c</code><p>Text color on hover</p></li>
+          <li><code>$button-color: false</code><p>(quoted string) The name of an item from the <code>$button-colors</code> list.</p></li>
+          <li><code>$button-size: false</code><p>(quoted string) The name of an item from the <code>$button-sizes</code> list.</p></li>
+          <li><code>$c: false</code><p>The color of the text.</p></li>
+          <li><code>$c-hover: false</code><p>The color of the text on hover. Most of the time the color of the text does not change on hover.</p></li>
+          <li><code>$bgc: false</code><p>The background color of the button.</p></li>
+          <li><code>$bgc-hover: false</code><p>The background color of the button on hover.</p></li>
+          <li><code>$font-size: false</code><p>The font-size of the text.</p></li>
+          <li><code>$lines: false</code><p>(integer) The height of the button in terms of multiples of <code>$base-line-height</code>.</p></li>
+          <li><code>$lines-horizontal-padding: false</code><p>(integer) The horizontal padding of the button in terms of multiples of <code>$base-line-height</code>.</p></li>
         </ul>
       </div>
       <div class="demo">
+        <button>One</button>
+        <button>Two</button>
+        <button>Three</button>
+      </div>
+      <div class="code">
+        <pre>
+          <code>
+%button One
+%button Two
+%button Three
+
+%button:first-of-type
+  +button($button-color: 'green', $button-size: 'medium')
+
+%button:nth-of-type(2)
+  +button($button-size: 'medium', $c: white, $bgc: $c-red, $bgc-hover: lighten($c-red, 10%))
+
+%button:nth-of-type(3)
+  +button($button-color: 'orange', $font-size: 11px, $lines: 7, $lines-horizontal-padding: 3)
+          </code>
+        </pre>
+      </div>
+    </li>
+    <li id="button-colors">
+      <h2 class="label">$button-colors</h2>
+      <div class="internals">
+        <ul>
+          <div class="label">Items:</div>
+          <li><code>'green'</code></li>
+          <li><code>'orange'</code></li>
+        </ul>
+      </div>
+      <div class="demo">
+        <button>I'm green</button>
         <button>I'm orange</button>
       </div>
       <div class="code">
         <pre>
           <code>
+%button I'm green
 %button I'm orange
 
-button
-  @include button-colors(white, $c-orange, lighten($c-orange, 10%))
+button:first-of-type
+  +button($button-color: 'green')
+
+button:first-of-type
+  +button($button-color: 'orange')
           </code>
         </pre>
       </div>
     </li>
     <li id="button-sizes">
-      <h2 class="label">@mixin button-sizes(...)</h2>
+      <h2 class="label">$button-sizes</h2>
       <div class="internals">
         <ul>
-          <div class="label">Required parameters</div>
-          <li><code>$font-size</code></li>
-          <li><code>$line-height</code></li>
-          <li><code>$lines-horizontal-padding</code></li>
+          <div class="label">Items:</div>
+          <li><code>'medium'</code></li>
+          <li><code>'jumbo'</code></li>
         </ul>
       </div>
       <div class="demo">
-        <button>Big button</button>
+        <button>Medium button</button>
+        <button>Jumbo button</button>
       </div>
       <div class="code">
         <pre>
           <code>
-%button Big button
+%button Medium button
+%button Jumbo button
 
-button
-  @include button-sizes(20px, 12, 7)
-          </code>
-        </pre>
-      </div>
-    </li>
-    <li id="button-green">
-      <h2 class="label">%button-green</h2>
-      <div class="internals">
-        <p>Creates a green button.</p>
-        <code>@include button-colors(white, $c-green, lighten($c-green, 10%))</code>
-      </div>
-      <div class="notes">
-        <p>This is a prepackaged setting for buttons that is included here because it will often be used.</p>
-      </div>
-      <div class="demo">
-        <button>I'm green</button>
-      </div>
-      <div class="code">
-        <pre>
-          <code>
-%button I'm green
+button:first-of-type
+  +button($button-size: 'medium')
 
-button
-  @extend %button-green
-          </code>
-        </pre>
-      </div>
-    </li>
-    <li id="button-medium">
-      <h2 class="label">%button-medium</h2>
-      <div class="internals">
-        <p>Creates a medium-sized button.</p>
-        <code>@include button-sizes(16px, 9, 5)</code>
-      </div>
-      <div class="notes"><p>This is a prepackaged setting for buttons that is included here because it will often be used.</p></div>
-      <div class="demo">
-        <button>I'm medium-sized</button>
-      </div>
-      <div class="code">
-        <pre>
-          <code>
-%button I'm medium-sized
-
-button
-  @extend %button-medium
+button:first-of-type
+  +button($button-size: 'jumbo')
           </code>
         </pre>
       </div>

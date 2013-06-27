@@ -1,15 +1,15 @@
 #flash {
   @include trailer($font-size: 18px, $lines: 4);
   @include adjust-font-size-to(18px);
-  @include panel-padding(3, 4, $font-size: 18px);
+  @include panel($lines-vertical-padding: 3, $lines-horizontal-padding: 4, $font-size: 18px);
 }
 
 #flash.success {
-  @include panel-background(lighten($c-light-green, 10%));
+  @include panel($bgc: lighten($c-light-green, 10%));
   color: darken($c-green, 5%);
 }
 
 #flash.warning {
-  @include panel-background(lighten($c-red, 40%));
+  @include panel($bgc: lighten($c-red, 40%));
   color: darken($c-red, 5%);
 }

@@ -1,10 +1,17 @@
 .button,
-button {
-  @extend .button; //looks weird b/c LR d/n accept placeholder selectors
+button { @extend .button; }
+
+.disabled {
+  &.button, &button {
+    @include button($c: white, $bgc: $c-light-gray, $bgc-hover: $c-light-gray);
+    &:hover { cursor: default }
+  }
 }
 
-.button.disabled,
-button.disabled {
-  @include button-colors(white, $c-light-gray, $c-light-gray);
-  &:hover { cursor: default }
-}
+/**
+ * PROBLEM: does it make sense to have this split between the button settings and button configurations?
+ * i think it does make sense if you're likely to be decomposing it and packaging it in lots of different places
+ * there's not really a standard "button"
+ * so i think this world makes sense if there's going to be classes that come with button setup styles and a certain button size, for example, but in different situations need to have different button colors
+ * another reason this makes sense: there's not a lot of cases of turning things into buttons, most of the time we're configuring things that have already been identified as buttons
+ */
